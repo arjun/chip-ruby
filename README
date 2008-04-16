@@ -19,4 +19,5 @@ and sample data.
 
 * get git if you don't have it
 * git clone git://github.com/arjun/chip-ruby.git
-* ruby bin/parse_chp.rb
+* cd chip-ruby
+* bin/parse_chp.rb
