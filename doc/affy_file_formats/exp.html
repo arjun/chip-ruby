@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix EXP File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® EXP Data File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br> 
+<TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY> <tr> <TD vAlign=top align=right width=11><IMG height=11 
+                        alt="" src="files_files/bullet2.gif" width=11 
+                        border=0></TD><TD vAlign=top align=left width=8><IMG height=1 alt="" 
+                        src="files_files/spacer.gif" width=5 border=0></TD><TD class=header3 vAlign=center align=left 
+                        ><a name="EXP_FILE"></a>EXP FILE</TD></tr> <tr> 
+    <TD vAlign=top align=left colSpan=3 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     ><IMG height=10 alt="" src="files_files/spacer.gif" width=1 border=0></TD></tr> 
+<tr> <TD vAlign=top align=left width=11 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     ><IMG height=1 alt="" 
+                        src="files_files/spacer.gif" width=11 border=0></TD>
+  <TD vAlign=top align=left width=8 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     > <P><IMG height=1 alt="" 
+                        src="files_files/spacer.gif" width=5 border=0></P><P>&nbsp;</P></TD><TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     > <P><span class="header4">Description</span><BR> The EXP 
+file contains information captured in the Experiment window of the MAS 5 software. 
+Experiment files are not available in GCOS or LIMS. Experiment information in 
+those applications are stored in a database and are available via the Affymetrix 
+GCOS SDK.</P><P><span class="header4">Format</span><BR> The format of the EXP 
+file is an ASCII text file similar to the Windows INI format.</P><P> The first 
+line defines the file type. The value is always: "Affymetrix GeneChip Experiment 
+Information".</P><P>The second line contains the version number of the file. The 
+value is always: "Version 1".</P><P>The remainder of the file is divided up into 
+sections. The start of each section is defined by a line containing a section 
+name enclosed in square braces. The section names are: "Sample Info", "Fluidics" 
+and "Scanner". The data in each section is of the format TAG&lt;tab&gt;VALUE, 
+where the TAG and VALUE are separated by a tab.</P><P>The "Sample Info" section 
+contains information about the experiment. The TAGS are:</P><table border="1" cellpadding="0" cellspacing="0" span class=content height="88"> 
+<tr> <td width="110" height="14"><b>TAG</b></td><td width="70%" height="14"><b>Description</b></td><td width="214" height="14"><b>MAS 
+Term (as displayed in the Experiment window)</b></td></tr> <tr> <td width="110" height="14">Chip Type</td><td width="70%" height="14">The 
+type of probe array. This is the only required field.</td><td width="214" height="14">Probe 
+Array Type</td></tr> <tr> <td width="110" height="14">Chip Lot</td><td width="70%" height="14">The 
+lot number of the array.</td><td width="214" height="14">Probe Array Lot</td></tr> 
+<tr> <td width="110" height="14">Operator</td><td width="70%" height="14">The 
+name of the user.</td><td width="214" height="14">Operator Name</td></tr> <tr> 
+<td width="110" height="13">Sample Type</td><td width="70%" height="13">The type 
+of sample.</td><td width="214" height="13">Sample Type</td></tr> <tr> <td width="110" height="14">Description</td><td width="70%" height="14">A 
+description of the sample.</td><td width="214" height="14">Sample Description</td></tr> 
+<tr> <td width="110" height="14">Project</td><td width="70%" height="14">The project 
+name.</td><td width="214" height="14">Sample Project</td></tr> <tr> <td width="110" height="14">Comments</td><td width="70%" height="14">Comments 
+about the experiment.</td><td width="214" height="14">Comments</td></tr> <tr> 
+<td width="110" height="14">Solution Type</td><td width="70%" height="14">The 
+reagents used in the experiment.</td><td width="214" height="14">Reagents</td></tr> 
+<tr> <td width="110" height="14">Solution Lot</td><td width="70%" height="14">The 
+lot number of the reagents.</td><td width="214" height="14">Reagent Lot</td></tr> 
+</table><p>The "Fluidics" section contains information about the last fluidics 
+run. The TAGS are:</p><table border="1" cellpadding="0" cellspacing="0"  span class=content height="88"> 
+<tr> <td width="110" height="14"><b>TAG</b></td><td width="70%" height="14"><b>Description</b></td><td width="214" height="14"><b>MAS 
+Term (as displayed in the Experiment window)</b></td></tr> <tr> <td width="110" height="14">Protocol</td><td width="70%" height="14">The 
+name of the fluidics protocol run on the fluidics station.</td><td width="214" height="14">Protocol</td></tr> 
+<tr> <td width="110" height="14">Station</td><td width="70%" height="14">The station 
+number.</td><td width="214" height="14">Fluidics Station</td></tr> <tr> <td width="110" height="14">Module</td><td width="70%" height="14">The 
+module number.</td><td width="214" height="14">Module</td></tr> <tr> <td width="110" height="14">Hybridize 
+Date</td><td width="70%" height="14">The date and time of the hybridization.</td><td width="214" height="14">Date</td></tr> 
+</table><br>Other tags may be in this section. The names of the tags are the steps 
+in the fluidics script executed on the experiment. Other lines in this section 
+may be defined but do not follow the TAG&lt;tab&gt;VALUE format. These lines may 
+include status messages provided by the fluidics station.<P></P><p>The "Scanner" 
+section contains information about the last scan. The TAGS are:</p>
+  <table border="1" cellpadding="0" cellspacing="0" span class=content height="87"> 
+<tr> <td width="110" height="14"><b>TAG</b></td><td width="70%" height="14"><b>Description</b></td><td width="214" height="14"><b>MAS 
+Term (as displayed in the Experiment window)</b></td></tr> <tr> <td width="110" height="14">Pixel Size</td><td width="70%" height="14">The 
+pixel size used.</td><td width="214" height="14">Pixel Size</td></tr> <tr> <td width="110" height="14">Filter</td><td width="70%" height="14">The 
+filter used.</td><td width="214" height="14">Filter</td></tr> <tr> 
+  <td width="110" height="13">Scan Temperature</td><td width="70%" height="13">
+  This item is not used by the current GeneChip scanners.</td>
+  <td width="214" height="13">Temperature</td></tr> <tr> <td width="110" height="14">
+  Scan Date</td><td width="70%" height="14">The 
+date and time of the scan.</td><td width="214" height="14">Date</td></tr> <tr> 
+<td width="110" height="14">Scanner ID</td><td width="70%" height="14">The ID 
+of the scanner.</td><td width="214" height="14">Scanner ID</td></tr> <tr> <td width="110" height="14">Number 
+of Scans</td><td width="70%" height="14">The number of multi-image scans.</td><td width="214" height="14"># 
+of scans</td></tr> <tr> <td width="110" height="14">Scanner Type</td><td width="70%" height="14">The 
+type of scanner.</td><td width="214" height="14">NA</td></tr> </table></TD></tr> 
+
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

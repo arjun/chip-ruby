@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix GRC File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® GRD Data File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY> 
+
+	<tr>
+	<TD vAlign=top align=right style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=11 alt="" src="files_files/bullet2.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+	<a name="GRD_FILE"></a>GRD FILE</TD>
+	</tr>
+	<tr>
+	<TD vAlign=top align=left colSpan=3 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+			<IMG height=10 alt="" src="files_files/spacer.gif" width=1 border=0></TD>
+	</tr>
+	<tr>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></P><P>&nbsp;</P></TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+		<span class="header4">Description</span><BR> The GRD (grid) file 
+		stores the estimate of the sub-pixel location of the center of every 
+		feature in an array.<P><span class="header4">Format</span><BR> 
+		The format of the GRD file is a binary file with data stored in 
+		big-endian format.</P>
+		<p>&nbsp;The file consists of the following sections (in order)</p>
+		<p><span class="header4">Header Section</span></p>
+		<p>The file header consists of 36 bytes in total. The values are:</p>
+		<table border="1" cellpadding="0" cellspacing="0" span class=content id="table24" > 
+<tr> <td width="38" height="14"><b>Item</b></td> <td width="70%" height="14"><b>
+	Description</b></td><td width="141" height="14"><b>Type</b></td><td width="214" height="14">
+	<b>Size</b></td></tr> <tr> <td width="38" height="14">1</td> 
+	<td width="70%" height="14">Magic number used to identify the file:<blockquote>
+		<p>(octal) 211 107 122 104 015 012 032 012<br>(hexadecimal) 89 47 52 44 0d 0a 1a 0a<br>(ASCII C notation) \211 G R D \r \n \032 \n</p>
+	</blockquote>
+	</td>
+	<td width="141" height="14">char[8]</td><td width="214" height="14">8 byte</td></tr> <tr> 
+	<td width="38" height="14">2</td> <td width="70%" height="14">The version 
+	number of the file. The version number is set to 1.</td><td width="141" height="14">
+	float</td><td width="214" height="14">
+	4 bytes</td></tr> 
+<tr> <td width="38" height="14">3</td> <td width="70%" height="14">The number of 
+	features in the x direction (Nx).</td><td width="141" height="14">unsigned 
+	int</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">4</td> <td width="70%" height="14">The number of 
+	features in the y direction (Ny).</td><td width="141" height="14">unsigned 
+	int</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">5</td> <td width="70%" height="14">The 
+	x-direction feature pitch.</td><td width="141" height="14">float</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">6</td> <td width="70%" height="14">The 
+	y-direction feature pitch.</td><td width="141" height="14">float</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">7</td> <td width="70%" height="14">The 
+	x-direction feature setback.</td><td width="141" height="14">
+	float</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">8</td> <td width="70%" height="14">The 
+	y-direction feature setback.</td><td width="141" height="14">
+	float</td><td width="214" height="14">
+	4 bytes</td></tr>  
+</table>
+		<p><span class="header4">Tag-Based Header Section</span></p>
+		<p>This section contains parameters stored as name/value pairs.</p>
+		<table border="1" cellpadding="0" cellspacing="0" span class=content id="table25" > 
+<tr> <td width="38" height="14"><b>Item</b></td> <td width="70%" height="14"><b>
+	Description</b></td><td width="141" height="14"><b>Type</b></td><td width="214" height="14">
+	<b>Size</b></td></tr> <tr> <td width="38" height="14">1</td> 
+	<td width="70%" height="14">Total number of bytes in the tag-based header.</td>
+	<td width="141" height="14">unsigned int</td><td width="214" height="14">4 
+	bytes</td></tr> <tr> 
+	<td width="38" height="14">2</td> <td width="70%" height="14">Total number 
+	of name-value pairs in the tag-based header.</td><td width="141" height="14">
+	unsigned int</td><td width="214" height="14">
+	4 bytes</td></tr> 
+<tr> <td width="38" height="14">3</td> <td width="70%" height="14">A series of 
+	ASCII strings in a name-value pair format. For each name-value pair we have 
+	the following 4 entries:<ul>
+		<li>String length of name including the null terminating character, 
+		unsigned integer (4 bytes)</li>
+		<li>A null terminated array of ASCII characters with length as specified 
+		above.</li>
+		<li>String length of value including the null terminating character, 
+		unsigned integer (4 bytes)</li>
+		<li>A null terminated array of ASCII characters with length as specified 
+		above.</li>
+	</ul>
+	</td><td width="141" height="14">see description</td><td width="214" height="14">
+	see description</td></tr>  
+</table>
+		<p>Note: The following tags shall be included in version 1 of the 
+		format:</p>
+		<ul>
+			<li>&quot;Parent DAT File&quot; - the full name of the DAT file associated with 
+			this GRD.</li>
+			<li>&quot;Scan Date Time&quot; - the date and time of the scan from the DAT 
+			file.</li>
+			<li>&quot;Scanner ID&quot; - scanner ID from the DAT file.</li>
+		</ul>
+		<p><span class="header4">Optimized Sub-Grid Corner Location Section</span></p>
+		<p>The optimized sub-grid corner location section shall contain the 
+		corner coordinates of each subgrid as computed during the DAT file 
+		analysis. Note: not all DAT file analyses in GCOS will product a GRD 
+		file.</p>
+		<table border="1" cellpadding="0" cellspacing="0" span class=content id="table26" > 
+<tr> <td width="38" height="14"><b>Item</b></td> <td width="70%" height="14"><b>
+	Description</b></td><td width="141" height="14"><b>Type</b></td><td width="214" height="14">
+	<b>Size</b></td></tr> <tr> <td width="38" height="14">1</td> 
+	<td width="70%" height="14">Total number of bytes in this section.</td>
+	<td width="141" height="14">unsigned int</td><td width="214" height="14">4 
+	bytes</td></tr> <tr> 
+	<td width="38" height="14">2</td> <td width="70%" height="14">Total number 
+	of subgrids in this section.</td><td width="141" height="14">
+	unsigned int</td><td width="214" height="14">
+	4 bytes</td></tr> 
+<tr> <td width="38" height="14">3</td> <td width="70%" height="14">For each 
+	sub-grid the following coordinates are stored:<ul>
+		<li>upper left x, float (4 bytes)</li>
+		<li>upper left y, float (4 bytes)</li>
+		<li>upper right x, float (4 bytes)</li>
+		<li>upper right y, float (4 bytes)</li>
+		<li>lower left x, float (4 bytes)</li>
+		<li>lower left y, float (4 bytes)</li>
+		<li>lower right x, float (4 bytes)</li>
+		<li>lower right y, float (4 bytes)</li>
+	</ul>
+	</td><td width="141" height="14">Array of floats</td><td width="214" height="14">
+	#sub-grids * 32 bytes</td></tr>  
+</table>
+		<p><span class="header4">Feature Center Data Section</span></p>
+		<p>The feature center data block consists of Nx * Ny pairs of (x,y) 
+		coordinates. Every feature on the array is contains an associated (x,y) 
+		feature center.</p>
+		<table border="1" cellpadding="0" cellspacing="0" span class=content id="table23" > 
+<tr> <td width="38" height="14"><b>Item</b></td> <td width="70%" height="14"><b>
+	Description</b></td><td width="141" height="14"><b>Type</b></td><td width="214" height="14">
+	<b>Size</b></td></tr> <tr> <td width="38" height="14">1</td> 
+	<td width="70%" height="14">The first sub-pixel coordinate pair stored is 
+	for the feature at cell-coordinate (0,0).</td>
+	<td width="141" height="14">float, float</td><td width="214" height="14">8 byte</td></tr> <tr> 
+	<td width="38" height="14">2</td> <td width="70%" height="14">The first 
+	sub-pixel coordinate pair stored is for the feature at cell-coordinate 
+	(1,0).</td><td width="141" height="14">
+	float, float</td><td width="214" height="14">
+	8 bytes</td></tr> 
+<tr> <td width="38" height="14">3</td> <td width="70%" height="14">The first 
+	sub-pixel coordinate pair stored is for the feature at cell-coordinate 
+	(2,0).</td><td width="141" height="14">float, float</td><td width="214" height="14">
+	8 bytes</td></tr>  
+<tr> <td width="38" height="14">4</td> <td width="70%" height="14">...</td><td width="141" height="14"></td><td width="214" height="14">
+	</td></tr>  
+</table>
+	</td>
+	</tr>
+
+
+	
+
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

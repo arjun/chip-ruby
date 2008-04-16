@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix CEL File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® CEL Data File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>  
+
+<tr>
+	<TD vAlign=top align=right width=11 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+	<IMG height=11 alt="" src="files_files/bullet2.gif" width=11 border=0></TD>
+ 	<TD vAlign=top align=left width=8 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+ 	<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></TD>
+ 	<TD class=header3 vAlign=center align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+ 	<a name="CEL_FILE"></a>CEL FILE</TD>
+</tr>                  
+<tr> 
+    <TD vAlign=top align=left colSpan=3 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none"  >
+    <IMG height=10 alt="" src="files_files/spacer.gif" width=1 border=0></TD>
+ </tr>
+                      
+ <tr>
+ 	<TD vAlign=top align=left width=11 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+ 	<IMG height=1 alt="" src="files_files/spacer.gif" width=11 border=0></TD>
+    <TD vAlign=top align=left width=8 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+    <P><IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></P>
+    <P>&nbsp;</P></TD>
+    <TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+    <P><span class="header4">Description</span><BR> The CEL 
+	file stores the results of the intensity calculations on the pixel values of 
+	the DAT file. This includes an intensity value, standard deviation of the 
+	intensity, the number of pixels used to calculate the intensity value, a 
+	flag to indicate an outlier as calculated by the algorithm and a user 
+	defined flag indicating the feature should be excluded from future analysis. 
+	The file stores the previously stated data for each feature on the probe 
+	array. The information below will describe the following versions:</P>
+	<ul>
+		<li><a href="#V3">Version 3</a> is generated by the MAS software. 
+		This was also known as the ASCII version.</li>
+	<li><a href="#V4">Version 4</a> is generated by the GCOS software. 
+		This was also know as the binary or XDA version.</li>
+	<li><a href="#calvin">Command Console version 1</a> is generated by the 
+	Command Console software. This is stored in 
+	the Command Console &quot;<a href="generic.html">generic</a>&quot; data file format.</li>
+	</ul>
+	<P><span class="header4">
+	<a name="V3"></a>Version 
+3 Format</span><BR> The format of the CEL file is an ASCII text file similar to 
+the Windows INI format.</P><P>The file is divided up into sections. The start 
+of each section is defined by a line containing a section name enclosed in square 
+braces. The section names are: "CEL", "HEADER", "INTENSITY", "MASKS", "OUTLIERS" 
+and "MODIFIED". The data in each section is of the format TAG=VALUE.</P><P>The 
+"CEL" section contains the version number of the file. The TAGS are:</P><table border="1" cellpadding="0" cellspacing="0" span class=content> 
+<tr> <td width="110" height="14"><b>TAG</b></td><td width="70%" height="14"><b>Description</b></td></tr> 
+<tr> <td width="110" height="14"> Version</td><td width="70%" height="14">The 
+version number. Always set to 3.</td></tr> </table><p>The "HEADER" section contains 
+miscellaneous header information. The TAGS are:</p><table border="1" cellpadding="0" cellspacing="0" span class=content height="141"> 
+<tr> <td width="110" height="13"><b>TAG</b></td><td width="70%" height="13"><b>Description</b></td></tr> 
+<tr> <td width="110" height="14"> Cols</td><td width="70%" height="14">The number 
+of columns in the array (of cells).</td></tr> <tr> <td width="110" height="14"> 
+Rows</td><td width="70%" height="14">The number of rows in the array (of cells).</td></tr> 
+<tr> <td width="110" height="14"> TotalX</td><td width="70%" height="14">Same 
+as Cols.</td></tr> <tr> <td width="110" height="14"> TotalY</td><td width="70%" height="14">Same 
+as Rows.</td></tr> <tr> <td width="110" height="14"> OffsetX</td><td width="70%" height="14">Not 
+used, always 0.</td></tr> <tr> <td width="110" height="14"> OffsetY</td><td width="70%" height="14">Not 
+used, always 0.</td></tr> <tr> <td width="110" height="14"> GridCornerUL</td><td width="70%" height="14">XY 
+coordinates of the upper left grid corner in pixel coordinates.</td></tr> <tr> 
+<td width="110" height="14"> GridCornerUR</td><td width="70%" height="14">XY coordinates 
+of the upper right grid corner in pixel coordinates.</td></tr> <tr> <td width="110" height="14"> 
+GridCornerLR</td><td width="70%" height="14">XY coordinates of the lower right 
+grid corner in pixel coordinates.</td></tr> <tr> <td width="110" height="14"> 
+GridCornerLL</td><td width="70%" height="14">XY coordinates of the lower left 
+grid corner in pixel coordinates.</td></tr> <tr> <td width="110" height="14"> 
+Axis-invertX</td><td width="70%" height="14">Not used, always 0.</td></tr> <tr> 
+<td width="110" height="14"> AxisInvertY</td><td width="70%" height="14">Not 
+used, always 0.</td></tr> <tr> <td width="110" height="14"> swapXY</td><td width="70%" height="14">Not 
+used, always 0.</td></tr> <tr> <td width="110" height="14"> DatHeader</td><td width="70%" height="14">The 
+header from the DAT file.</td></tr> <tr> <td width="110" height="14"> Algorithm</td><td width="70%" height="14">The 
+algorithm name used to create the CEL file.</td></tr> <tr> <td width="110" height="14"> 
+AlgorithmParameters</td><td width="70%" height="14">The parameters used by the 
+algorithm. The format is TAG:VALUE pairs separated by semi-colons or TAG=VALUE 
+	pairs separated by spaces.</td></tr> </table><p>The 
+"INTENSITY" section contains intensity information. The TAGS are:</p><table border="1" cellpadding="0" cellspacing="0" span class=content> 
+<tr> <td width="110" height="14"><b>TAG</b></td><td width="70%" height="14"><b>Description</b></td></tr> 
+<tr> <td width="110" height="14"> NumberCells</td><td width="70%" height="14">The 
+total number of cells in the array (Rows*Cols)</td></tr> <tr> <td width="110" height="14"> 
+CellHeader</td><td width="70%" height="14">The header for the remainder of the 
+data in this section.<br>The header is always set to: "<span style="FONT-SIZE: 10pt; LINE-HEIGHT: 150%; FONT-FAMILY: Arial">X 
+Y&nbsp;MEAN STDV NPIXELS"</span></td></tr> <tr> <td width="110" height="14"> NA</td><td width="70%" height="14"><font size="2"> 
+<span style="FONT-FAMILY: Arial">The remaining lines in this section contain the 
+intensity, standard deviation value and the number of pixels used to compute the 
+intensity value for each cell in the array. The order is defined by the header.</span></font></td></tr> 
+</table><p>The "MASKS" section specifies which cells have been masked by the user. 
+The TAGS are:</p><table border="1" cellpadding="0" cellspacing="0" span class=content> 
+<tr> <td width="110" height="14"><b>TAG</b></td><td width="70%" height="14"><b>Description</b></td></tr> 
+<tr> <td width="110" height="14"> NumberCells</td><td width="70%" height="14">The 
+number of masked cells.</td></tr> <tr> <td width="110" height="14"> CellHeader</td><td width="70%" height="14">The 
+header for the remainder of the data in this section. The header is always set 
+to: "X Y".</td></tr> <tr> <td width="110" height="14"> NA</td><td width="70%" height="14">The 
+remaining lines in this section contain the XY coordinates of those cells masked 
+by the user.</td></tr> </table><p>The "OUTLIERS" section specifies which cells 
+were called outliers by the software. The TAGS are:</p><table border="1" cellpadding="0" cellspacing="0" span class=content> 
+<tr> <td width="110" height="14"><b>TAG</b></td><td width="70%" height="14"><b>Description</b></td></tr> 
+<tr> <td width="110" height="14"> NumberCells</td><td width="70%" height="14">The 
+number of outlier cells.</td></tr> <tr> <td width="110" height="14"> CellHeader</td><td width="70%" height="14">The 
+header for the remainder of the data in this section. The header is always set 
+to: "X Y".</td></tr> <tr> <td width="110" height="14"> NA</td><td width="70%" height="14">The 
+remaining lines in this section contain the XY coordinates of those cells called 
+outliers by the software.</td></tr> </table><p>The "MODIFIED" section specifies 
+which cells were modified by the user. This feature was dropped in MAS 4 thus 
+the number of cells in this section should always be 0. The TAGS are:</p><table border="1" cellpadding="0" cellspacing="0" span class=content> 
+<tr> <td width="110" height="14"><b>TAG</b></td><td width="70%" height="14"><b>Description</b></td></tr> 
+<tr> <td width="110" height="14"> NumberCells</td><td width="70%" height="14">The 
+number of outlier cells.</td></tr> <tr> <td width="110" height="14"> CellHeader</td><td width="70%" height="14">The 
+header for the remainder of the data in this section. The header is always set 
+to: "X Y ORIGMEAN".</td></tr> <tr> <td width="110" height="14"> NA</td><td width="70%" height="14">The 
+remaining lines in this section contain the XY coordinates and the original intensity 
+value (calculated by the software) of those cells modified by the user.</td></tr> 
+</table><P><span class="header4"><a name="V4"></a>Version 4 Format</span><BR> The format of the 
+CEL file is an binary file were values are stored in little-endian format.</P><P>The 
+file contents are define by:</P><TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" span CLASS=content HEIGHT="3"> 
+<TR> <TD WIDTH="110" HEIGHT="14"><B>Item</B></TD><TD width="70%" HEIGHT="14"><B>Description</B></TD><TD WIDTH="214" HEIGHT="14"><B>Type</B></TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14">1</TD><TD width="70%" HEIGHT="14">Magic number. 
+Always set to 64.</TD><TD WIDTH="214" HEIGHT="14">integer</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14">2</TD><TD width="70%" HEIGHT="14"> 
+Version number. Always set to 4.</TD><TD WIDTH="214" HEIGHT="14">integer</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14">3</TD><TD width="70%" HEIGHT="14"> Number of 
+columns.</TD><TD WIDTH="214" HEIGHT="14">integer</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 
+4</TD><TD width="70%" HEIGHT="14">Number of rows.</TD><TD WIDTH="214" HEIGHT="14"> 
+integer</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 5</TD><TD width="70%" HEIGHT="14">Number 
+of cells (rows*cols).</TD><TD WIDTH="214" HEIGHT="14"> integer</TD></TR> <TR> 
+<TD WIDTH="110" HEIGHT="14"> 6</TD><TD width="70%" HEIGHT="14"> Header length</TD><TD WIDTH="214" HEIGHT="14">integer</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 7</TD><TD width="70%" HEIGHT="14">Header as 
+defined in the HEADER section of the version 3 CEL files. The string contains 
+TAG=VALUE separated by a space where the TAG names are defined in the version 
+3 HEADER section.</TD><TD WIDTH="214" HEIGHT="14"> char[ length defined above]</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 8</TD><TD width="70%" HEIGHT="14"> Algorithm 
+name length.</TD><TD WIDTH="214" HEIGHT="14">integer</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 
+9</TD><TD width="70%" HEIGHT="14">The algorithm name used to create the CEL file.</TD><TD WIDTH="214" HEIGHT="14">char[ 
+length defined above]</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 10</TD><TD width="70%" HEIGHT="14">Algorithm 
+parameters length.</TD><TD WIDTH="214" HEIGHT="14"> integer</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 
+11</TD><TD width="70%" HEIGHT="14">The parameters used by the algorithm. The format 
+is TAG:VALUE pairs separated by semi-colons or TAG=VALUE pairs separated by 
+	spaces.</TD><TD WIDTH="214" HEIGHT="14"> 
+char[ length defined above]</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 12</TD><TD width="70%" HEIGHT="14">Cell 
+margin used for computing the cells intensity value.</TD><TD WIDTH="214" HEIGHT="14"> 
+integer</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 13</TD><TD width="70%" HEIGHT="14">Number 
+of outlier cells.</TD><TD WIDTH="214" HEIGHT="14">DWORD</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 
+14</TD><TD width="70%" HEIGHT="14">Number of masked cells.</TD><TD WIDTH="214" HEIGHT="14"> 
+DWORD</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 15</TD><TD width="70%" HEIGHT="14">Number 
+of sub-grids.</TD><TD WIDTH="214" HEIGHT="14"> integer</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 
+16</TD><TD width="70%" HEIGHT="14">Cell entries - this consists of an intensity 
+value, standard deviation value and pixel count for each cell in the array.<p>The 
+values are stored by row then column starting with the X=0, Y=0 cell. As an example, 
+the first five entries are for cells defined by XY coordinates: (0,0), (1,0), 
+(2,0), (3,0), (4,0).< /p> </TD><TD WIDTH="214" HEIGHT="14">(float, float, short)</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 17</TD><TD width="70%" HEIGHT="14">Masked entries 
+- this consists of the XY coordinates of those cells masked by the user.</TD><TD WIDTH="214" HEIGHT="14"> 
+(short, short)</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 18</TD><TD width="70%" HEIGHT="14">Outlier 
+entries - this consists of the XY coordinates of those cells called outliers by 
+the software.</TD><TD WIDTH="214" HEIGHT="14"> (short, short)</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 
+19</TD><TD width="70%" HEIGHT="14">Sub-grid entries - This is the sub-grid definition. 
+There are as many sub-grids in the file as defined by the number of sub-grids 
+above. Each sub-grid is defined as:<p>- row number (integer)<br> - column number 
+(integer)<br> - upper left x coordinate in pixels (float)<br> - upper left y coordinate 
+in pixels (float)<br> - upper right x coordinate in pixels (float)<br> - upper 
+right x coordinate in pixels (float)<br> - lower left x coordinate in pixels (float)<br> 
+- lower left y coordinate in pixels (float)<br> - lower right x coordinate in 
+pixels (float)<br> - lower right x coordinate in pixels (float)<br> - left cell 
+position (integer)<br> - top cell position (integer)<br> - right cell position 
+(integer)<br> - bottom cell position (integer)</p></TD><TD WIDTH="214" HEIGHT="14">(integer, 
+integer, float, float, float, float, float, float, float, float, integer , integer 
+, integer , integer )</TD></TR> </TABLE><P>Types used are defined as: integer 
+(A 32-bit signed integer), DWORD (32-bit unsigned integer), float (An 32-bit floating-point 
+number), short (16-bit signed integer).</P>
+	<P><span class="header4">
+	<a name="calvin"></a>Command Console Format</span><BR> The format of the CEL file 
+	generated by the Command Console software uses the Command Console <a href="generic.html">
+	generic</a> data format. The following describes the data sets and groups in 
+	the file.</P>
+	<P>The generic data header shall include:</P>
+	<blockquote>
+		<P>The data type identifier is set to &quot;affymetrix-calvin-intensity&quot;</P>
+		<P>The parameters are dependent on the algorithm used to create the CEL 
+		file. For the percentile algorithm these include the following 
+		parameters:</P>
+		<table class="content" border=1>
+		<tr>
+			<td><b>Parameter Name</b></td>
+			<td><b>Definition</b></td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-Percentile</td>
+			<td>The percentile value used.</td>
+		</tr>
+			<td>affymetrix-algorithm-param-CellMargin</td>
+			<td>The number of pixels around the border to ignore.</td>
+		</tr>
+			<td>affymetrix-algorithm-param-OutlierHigh</td>
+			<td>The high threshold for the outlier calculation.</td>
+		</tr>
+			<td>affymetrix-algorithm-param-OutlierLow</td>
+			<td>The low threshold for the outlier calculation.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-GridULX</td>
+			<td>The X coordinate of the upper left corner of the global grid.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-GridULY</td>
+			<td>The Y coordinate of the upper left corner of the global grid.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-GridURX</td>
+			<td>The X coordinate of the upper right corner of the global grid.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-GridURX</td>
+			<td>The Y coordinate of the upper right corner of the global grid.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-GridLRX</td>
+			<td>The X coordinate of the lower right corner of the global grid.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-GridLRX</td>
+			<td>The Y coordinate of the lower right corner of the global grid.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-GridLLX</td>
+			<td>The X coordinate of the lower left corner of the global grid.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-param-GridLLX</td>
+			<td>The Y coordinate of the lower left corner of the global grid.</td>
+		</tr>
+		</table>
+		<P>Other parameters include:</P>
+		<table class="content" border=1>
+		<tr>
+			<td><b>Parameter Name</b></td>
+			<td><b>Definition</b></td>
+		</tr>
+		<tr>
+			<td>affymetrix-array-type</td>
+			<td>The probe array type</td>
+		</tr>
+		<tr>
+			<td>affymetrix-algorithm-name</td>
+			<td>The name of the algorithm.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-cel-cols</td>
+			<td>The number of columns of features (cells)</td>
+		</tr>
+		<tr>
+			<td>affymetrix-cel-rows</td>
+			<td>The number of rows of features (cells)</td>
+		</tr>
+		<tr>
+			<td>affymetrix-file-version</td>
+			<td>File version.</td>
+		</tr>
+		</table>
+	</blockquote>
+	<P>The DAT file parameters (if available) will be stored within the parent 
+	data header object.</P>
+	<P>The intensity data is stored in a single group called Default Group with 5 data sets. The data 
+	sets are defined as:</P>
+	<P>
+	<table class="content" border=1>
+		<tr>
+			<td><b>Data Set Name</b></td>
+			<td><b>Description</b></td>
+			<td><b>Number of Columns</b></td>
+			<td><b>Column Name</b></td>
+			<td><b>Column Type</b></td>
+			<td><b>Description</b></td>
+		</tr>
+		<tr>
+			<td>Intensity</td>
+			<td>The intensity values for each feature.</td>
+			<td>1</td>
+			<td>Intensity</td>
+			<td>FLOAT</td>
+			<td>The intensity value. The row order is the same as defined in the GCOS CEL file.</td>
+		</tr>
+		<tr>
+			<td>StdDev</td>
+			<td>The standard deviations of the intensity values.</td>
+			<td>1</td>
+			<td>StdDev</td>
+			<td>FLOAT</td>
+			<td>The standard deviation value. The row order is the same as defined in the GCOS CEL file.</td>
+		</tr>
+		<tr>
+			<td>Pixel</td>
+			<td>The number of pixels used to calculate the intensity values.</td>
+			<td>1</td>
+			<td>Pixel</td>
+			<td>SHORT</td>
+			<td>SHORT - The pixel count value. The row order is the same as defined in the GCOS CEL file.</td>
+		</tr>
+		<tr>
+			<td>Outlier</td>
+			<td>The X/Y coordinates of those features called as outliers by the 
+			algorithm.</td>
+			<td>2</td>
+			<td>X<p>Y</td>
+			<td>SHORT<p>SHORT</td>
+			<td>The X coordinate of the outlier cell.<p>The Y 
+			coordinate of the outlier cell.</td>
+		</tr>
+		<tr>
+			<td>Mask</td>
+			<td>The X/Y coordinates of the user masked features.</td>
+			<td>2</td>
+			<td>X<p>Y</td>
+			<td>SHORT<p>SHORT</td>
+			<td>The X coordinate of the outlier cell.<p>The Y 
+			coordinate of the outlier cell.</td>
+		</tr>
+		</table>
+	<P></P>
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

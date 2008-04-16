@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="./files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+<base target="_self">
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left>
+	<IMG height=54 alt=Affymetrix src="./files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2">
+	<IMG height=3 alt="" 
+			src="./files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE>
+<TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" >
+		<IMG HEIGHT=1 ALT="" 
+                        src="./files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%">
+		<IMG height=41 alt="" 
+                  src="./files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" height="16" >
+<IMG HEIGHT=1 ALT="" 
+                        src="./files_files/spacer.gif" WIDTH=11 BORDER=0></TD>
+<TD class=intro vAlign=top align=left height="16"> 
+<P><span class="header2">Affymetrix® Data File Formats - Introduction</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br> 
+<TABLE cellSpacing=0 cellPadding=0  border=0  class="intro"><TR> <TD vAlign=top align=left width=11" >
+	<IMG HEIGHT=1 ALT="" 
+                        src="./files_files/spacer.gif" WIDTH=15 BORDER=0></TD><TD><P>The 
+Affymetrix Data Files include the .<a href="exp.html">EXP</a>, .<a href="dat.html">DAT</a>, .<a href="cel.html">CEL</a>, .<a href="chp.html">CHP</a>, 
+	.<a href="cnchp-lohchp.html">CNCHP</a>, .<a href="cnchp-lohchp.html">LOHCHP</a>,
+	.<a href="cdf.html">CDF</a>, .<a href="bar.html">BAR</a>, .<a href="bpmap.html">BPMAP</a>, .<a href="tpmap.html">TPMAP</a>, .<a href="psi.html">PSI</a>,
+	.<a href="msk.html">MSK</a>,
+	 .<a href="grd.html">GRD</a>, and
+	.<a href="grc.html">GRC</a> files generated 
+and managed by Affymetrix<SPAN CLASS="header2">®</SPAN> GeneChip<SPAN CLASS="header2">®</SPAN> software. This documentation is intended to provide comprehensive technical 
+detail on the format and specifications of these Affymetrix Data Files. Additional 
+support is not provided other than the documentation available in this web page.</P><P>
+	Software developers are strongly encouraged to use the Affymetrix Files SDK 
+	(rather than direct file format compatibility) in accessing the information 
+	stored within the data files. The Files SDK provides parsing abilities for 
+	all versions of the data files and seamless integration with the many 
+	Affymetrix data management systems.</P><P>We expect changes to be made to the Affymetrix file formats 
+frequently during the foreseeable future as the instrumentation and microarray 
+platform evolves to support higher performance requirements, new applications, 
+and an ever shrinking microarray feature size. Thus, we expect that software built 
+to access the files directly, rather than through the Files SDK, may be somewhat 
+less robust during periods of file format evolution.</P><P>Having stated the above, 
+Affymetrix does realize that there are occasions when use of the Files SDK may 
+not be practical, when unfiltered access to data is required. It is for these 
+circumstances that Affymetrix is making the file format documentation available 
+to you. As with all unfiltered products, please consider your use of direct file 
+format access carefully. We wish you good luck.</P><P>Our policy is to support 
+only versions of the file formats which will be or have been commercially released. 
+Beta versions of file formats will not be supported. We will document new or revised 
+formats as soon as commercially feasible. However, please be aware that our own 
+development cycles may not finalize new formats with enough lead time to be allow 
+you to support them at initial release. Use of the documentation provided is offered 
+to those solutions providers who understand and accept these support limitations.</P><P>We 
+are pleased to have you working with the Affymetrix platform. Please consider 
+joining the Affymetrix Developers Network 
+	<a href="https://www.affymetrix.com/site/your_account.affx">distribution list</a> in order 
+to keep up to date with upcoming changes to the platform and the resources to 
+help you leverage them in your work.</TD></TR></TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

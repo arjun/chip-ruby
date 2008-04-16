@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix BAR File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® BAR Data File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>  
+
+<TR>
+	<TD vAlign=top align=right style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=11 alt="" src="files_files/bullet2.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+	<a name="BAR_FILE"></a>BAR FILE</TD>
+</TR>
+
+<TR>
+	<TD vAlign=top align=left colSpan=3 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+			<IMG height=10 alt="" src="files_files/spacer.gif" width=1 border=0></TD>
+</TR>
+
+<TR>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></P><P>&nbsp;</P></TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+		<span class="header4">Description</span><BR>
+		The BAR file contains one and two sample analysis results (signal and 
+		p-values) from the tiling array software.<p><span class="header4">Format</span><BR> The format of the 
+		BAR 
+file is a binary file with data stored in big-endian format. The format of the 
+		file is a header section followed by sequences sections (one section per 
+		sequence defined).</p>
+		<P><span class="header4">Section Definitions</span></P>
+	<P><span class="header4">File Header</span><br>
+		<table border="1" cellpadding="0" cellspacing="0" span class=content id="table9" > 
+<tr> <td width="38" height="14"><b>Item</b></td> <td width="70%" height="14"><b>
+	Description</b></td><td width="141" height="14"><b>Type</b></td><td width="214" height="14">
+	<b>Size</b></td></tr> <tr> <td width="38" height="14">1</td> 
+	<td width="70%" height="14">Magic number. A value to identify the file type. 
+	The value is set to &quot;barr\r\n\032\n”.</td>
+	<td width="141" height="14">char</td><td width="214" height="14">8 bytes</td></tr> <tr> 
+	<td width="38" height="14">2</td> <td width="70%" height="14">The version 
+	number of the file. The version number is either 1.0 or 2.0.</td><td width="141" height="14">
+	float</td><td width="214" height="14">
+	4 bytes</td></tr> 
+<tr> <td width="38" height="14">3</td> <td width="70%" height="14">Number of 
+	sequences stored in the file. This will be referred to as NSEQ.</td><td width="141" height="14">
+	integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">4</td> <td width="70%" height="14">Number of 
+	columns per data point. This will be referred to as NCOL.</td><td width="141" height="14">
+	integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">5</td> <td width="70%" height="14">The field 
+	types, one per column of data. The possible values are:<blockquote>
+		<p>0 – Double<br>
+		1 – Float<br>
+		2 – 4 byte signed integer<br>
+		3 – 2 byte signed integer<br>
+		4 – 1 byte signed integer<br>
+		5 – 4 byte unsigned integer<br>
+		6 – 2 byte unsigned integer<br>
+		7 – 1 byte unsigned integer</p>
+	</blockquote>
+	<p>Currently only types 1 and 2 are used in Affymetrix BAR files.</td><td width="141" height="14">
+	integer</td><td width="214" height="14">
+	4*NCOL</td></tr>  
+<tr> <td width="38" height="14">6</td> <td width="70%" height="14">The number of 
+	parameter name/value pairs. The parameter names and values are stored as 
+	strings.<p>Note: Items 7-10 are repeated for each parameter.</td><td width="141" height="14">
+	integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">7</td> <td width="70%" height="14">The length of 
+	the parameter name.</td><td width="141" height="14">integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">8</td> <td width="70%" height="14">The parameter 
+	name.</td><td width="141" height="14">char</td><td width="214" height="14">
+	Specified by item #7.</td></tr>  
+<tr> <td width="38" height="14">9</td> <td width="70%" height="14">The length of 
+	the parameter value.</td><td width="141" height="14">integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">10</td> <td width="70%" height="14">The 
+	parameter value.</td><td width="141" height="14">char</td><td width="214" height="14">
+	Specified by item #9.</td></tr>  
+</table>
+	<p><span class="header4">Sequence</span><br>
+	<table border="1" cellpadding="0" cellspacing="0" span class=content id="table10"> 
+<tr> <td width="38" height="14"><b>Item</b></td> <td width="70%" height="14"><b>
+	Description</b></td><td width="141" height="14"><b>Type</b></td><td width="214" height="14">
+	<b>Size</b></td></tr> <tr> <td width="38" height="14">1</td> 
+	<td width="70%" height="14">The length of the sequence name. Refered to as 
+	SEQNAMELEN.</td>
+	<td width="141" height="14">integer</td><td width="214" height="14">4 
+	bytes</td></tr> <tr> <td width="38" height="14">2</td> 
+	<td width="70%" height="14">The sequence name.</td>
+	<td width="141" height="14">char</td><td width="214" height="14">Specified 
+	by item #1</td></tr> 
+<tr> <td width="38" height="14">3</td> <td width="70%" height="14">The length of 
+	the sequence group name. <b>(only for version 2.0 and above files).</b></td><td width="141" height="14">
+	integer</td><td width="214" height="14">4 bytes</td></tr>  
+<tr> <td width="38" height="14">4</td> <td width="70%" height="14">The name of 
+	the group which the sequence is a member (for example, often specifies 
+	organism). <b>(only for version 2.0 and above files).</b></td><td width="141" height="14">
+	char</td><td width="214" height="14">
+	Specified by item #3</td></tr>  
+<tr> <td width="38" height="14">5</td> <td width="70%" height="14">The length of 
+	the sequence version.</td><td width="141" height="14">integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">6</td> <td width="70%" height="14">The sequence 
+	version.</td><td width="141" height="14">char</td><td width="214" height="14">
+	Specified by item #5</td></tr>  
+<tr> <td width="38" height="14">7</td> <td width="70%" height="14">The number of 
+	parameter name/value pairs. <b>(only for version 2.0 and above files).</b><p>
+	Note: Items 8-11 are repeated for each parameter.</td><td width="141" height="14">
+	integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">8</td> <td width="70%" height="14">The length of 
+	the parameter name. <b>(only for version 2.0 and above files).</b></td><td width="141" height="14">
+	integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">9</td> <td width="70%" height="14">The name of 
+	the parameter. <b>(only for version 2.0 and above files).</b></td><td width="141" height="14">
+	char</td><td width="214" height="14">
+	Specified by item #8</td></tr>  
+<tr> <td width="38" height="14">10</td> <td width="70%" height="14">The length 
+	of the parameter value. <b>(only for version 2.0 and above files).</b></td><td width="141" height="14">
+	integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">11</td> <td width="70%" height="14">The value of 
+	the parameter.<b> (only for version 2.0 and above files).</b></td><td width="141" height="14">
+	char</td><td width="214" height="14">
+	Specified by item #10</td></tr>  
+<tr> <td width="38" height="14">12</td> <td width="70%" height="14">The number 
+	of data points defined in the sequence. Each data point will contain NCOL 
+	column values.</td><td width="141" height="14">integer</td><td width="214" height="14">
+	4 bytes</td></tr>  
+<tr> <td width="38" height="14">13</td> <td width="70%" height="14">The next set 
+	of values in the file is the data points for the sequence. Each data point 
+	contains NCOL column values. The type, thus the size, of each column is 
+	defined above in the field types section.</td><td width="141" height="14">
+	see description.</td><td width="214" height="14">
+	see description.</td></tr>  
+</table>
+
+	</td>
+</tr>
+
+
+
+	
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

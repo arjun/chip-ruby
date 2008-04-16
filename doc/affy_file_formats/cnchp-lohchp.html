@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix Genotyping Console CHP File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="./files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left>
+	<IMG height=54 alt=Affymetrix src="./files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2">
+	<IMG height=3 alt="" 
+			src="./files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE>
+<TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0 width="424"> <TBODY> <TR><TD vAlign=top align=left width=11" >
+		<IMG HEIGHT=1 ALT="" 
+                        src="./files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%">
+		<IMG height=41 alt="" 
+                  src="./files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" >
+<IMG HEIGHT=1 ALT="" 
+                        src="./files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® Genotyping Console CNCHP and LOHCHP Data File Formats</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>  
+
+<TR>
+	<TD vAlign=top align=right style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=11 alt="" src="./files_files/bullet2.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="./files_files/spacer.gif" width=5 border=0></TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">&nbsp;</TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+	CNCHP AND LOHCHP FILES</TD>
+			<td>&nbsp;</td>
+</TR>
+
+<TR>
+	<TD vAlign=top align=left colSpan=4 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+			<IMG height=10 alt="" src="./files_files/spacer.gif" width=1 border=0></TD>
+</TR>
+
+<TR>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11" height="1648">
+		<IMG height=1 alt="" src="./files_files/spacer.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8" height="1648">
+		<IMG height=1 alt="" src="./files_files/spacer.gif" width=5 border=0></P><P>&nbsp;</P></TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" height="1648">
+		&nbsp;</TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" height="1648">
+		<span class="header4">Description</span><BR>
+		<p>The CNCNP and LOHCHP files generated by Genotyping Console software 
+		contain Copy Number and Loss of Heterozygosity (LOH) analysis results 
+		from the CN4 and CN5 algorithms.&nbsp; Copy Number results generated by the CN4 algorithm are retained in 
+		CNCHP filles.&nbsp; LOH results generated by the CN4 algorithm are 
+		stored in LOHCHP files.&nbsp; Copy 
+		Number and LOH results generated by the CN5 algorithm are combined in CNCHP files.&nbsp; </p>
+		<p><a href="chp-gtc.html">CHP</a> files containing SNP results generated by the Genotyping Console 
+		software are described in a separate document.</p>
+    <span class="header4">Format</span></p>	
+	<P>The format of the CNCHP and LOHCHP files 
+	generated by the Genotyping Console software uses the Command Console <a href="generic.html">
+	binary</a> data format. The following describes the data sets and groups 
+	stored in 
+	the file.</P>
+		<P>The parameters stored in the header of the file include algorithm 
+		parameters (those whose names are prefixed with &quot;affymetrix-algorithm-parameter-&quot;) 
+		and summary statistics (those whose names are prefixed with &quot;affymetrix-chipsummary-&quot;). 
+		These parameters are algorithm specific.</P>
+		<P><b>Copy Number Results generated by CN4 </b></P>
+		<P>The Copy Number analysis results from CN4 are stored in a single 
+		group with a single data set. The data set header will contain a set of 
+		parameters to define the column labels.</P>
+		<P>The data type identifier is set to: &quot;affymetrix-multi-data-type-analysis&quot;</P>
+		<p>The data group containing the analysis results is called &quot;MultiData&quot;.</p>
+		<p>The results are stored in a data set named &quot;CopyNumber&quot;. </p>
+		<p>The data set for Copy Number analysis results generated by CN4 will contain the following columns:</p>
+		
+		<table class="content" border=1 id="table7" width="563">
+		<tr>
+			<td width="153"><b>Column Name</b></td>
+			<td width="394"><b>Column Type</b></td>
+		</tr>
+		<tr>
+			<td width="153">ProbeSetName</td>
+			<td width="394">Ascii</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Chromosome</span></font></td>
+			<td width="394">UByte. The chromosome display values (1-22, X, Y, 
+			MT) are stored in the data set header. The values presented in this 
+			column are a foreign key to the data set header. The values in this 
+			column are defined as<p>1-22, 24 (for X), 25 (for Y) and 26 (for MT) 
+			and 255 (for no value)</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Position</span></font></td>
+			<td width="394">UInt</td>
+		</tr>	
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Log2Ratio</span></font></td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			HmmMedianLog2Ratio</span></font></td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			CNState</span></font></td>
+			<td width="394">UByte</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			NegLog10PValue</span></font></td>
+			<td width="394">Float</td>
+		</tr>	
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			ChipNum</span></font></td>
+			<td width="394">UByte</td>
+		</tr>
+		</table><br>
+		<P><b>Loss of Heterozygosity Results generated by CN4 </b></P>
+		<P>The Loss of Heterozyagosity analysis results from CN4 are stored in a single 
+		group with a single data set. The data set header will contain a set of 
+		parameters to define the column labels.</P>
+		<P>The data type identifier is set to: &quot;affymetrix-multi-data-type-analysis&quot;</P>
+		<p>The data group containing the analysis results is called &quot;MultiData&quot;.</p>
+		<p>The results are stored in a data set named &quot;CopyNumber&quot;. </p>
+		<p>The data set for Loss Of Heterozygosity analysis results generated by 
+		CN4 will contain the following columns:</p>
+		   <table class="content" border=1 id="table7" width="563">
+		<tr>
+			<td width="153"><b>Column Name</b></td>
+			<td width="394"><b>Column Type</b></td>
+		</tr>
+		<tr>
+			<td width="153">ProbeSetName</td>
+			<td width="394">Ascii</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Chromosome</span></font></td>
+			<td width="394">UByte. The chromosome display values (1-22, X, Y, 
+			MT) are stored in the data set header. The values presented in this 
+			column are a foreign key to the data set header. The values in this 
+			column are defined as<p>1-22, 24 (for X), 25 (for Y) and 26 (for MT) 
+			and 255 (for no value)</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Position</span></font></td>
+			<td width="394">UInt</td>
+		</tr>		
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Call</span></font></td>
+			<td width="394">UByte</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			RefCall</span></font></td>
+			<td width="394">UByte</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			LohState</span></font></td>
+			<td width="394">UByte</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			LohProb</span></font></td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			RetProb</span></font></td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			ChipNum</span></font></td>
+			<td width="394">UByte</td>
+		</tr>
+		</table>
+
+
+<P><b>Copy Number and Loss of Heterozygosity Results Generated by CN5 </b></P>
+		<P>The Copy Number and Loss of Heterozygosity results generated by CN5 are stored in one file in a single 
+		group with a single data set. </P>
+		<P>The data set header will contain a set of 
+		parameters to define the column labels.</P>
+		<P>The data type identifier is set to: &quot;affymetrix-multi-data-type-analysis&quot;</P>
+		<p>The data group containing the analysis results is called &quot;MultiData&quot;.</p>
+		<p>The results are stored in a data set named &quot;CopyNumber&quot;.</p>
+
+	<p>The data set for Copy Number and Loss of Heterozygosity results for Genome-Wide 
+	Human SNP Array 6.0 arrays will contain 
+	the following columns:</p>
+	   <table class="content" border=1 id="table7" width="563">
+		<tr>
+			<td width="153"><b>Column Name</b></td>
+			<td width="394"><b>Column Type</b></td>
+		</tr>
+		<tr>
+			<td width="153">ProbeSetName</td>
+			<td width="394">Ascii</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Chromosome</span></font></td>
+			<td width="394">UByte. The chromosome display values (1-22, X, Y, 
+			MT) are stored in the data set header. The values presented in this 
+			column are a foreign key to the data set header. The values in this 
+			column are defined as<p>1-22, 24 (for X), 25 (for Y) and 26 (for MT) 
+			and 255 (for no value)</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Position</span></font></td>
+			<td width="394">UInt</td>
+		</tr>		
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			CNState</span></font></td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Log2Ratio</span></font></td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			SmoothSignal</span></font></td>
+			<td width="394">Float</td>
+		</tr>		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			LOH</span></font></td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153"><font size="2"><span style="font-family: Arial">
+			Allele Difference</span></font></td>
+			<td width="394">Float</td>
+		</tr>
+		</table>
+</TD>
+		<td height="1648">&nbsp;</td>
+</TR>
+
+
+
+
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

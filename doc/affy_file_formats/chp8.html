@@ -1,0 +1,463 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix CHP File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® CHP Data File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>  
+
+<TR>
+	<TD vAlign=top align=right style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=11 alt="" src="files_files/bullet2.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">&nbsp;</TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none"><a name="CHP_FILE"></a>CHP FILE</TD>
+			<td>&nbsp;</td>
+</TR>
+
+<TR>
+	<TD vAlign=top align=left colSpan=4 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+			<IMG height=10 alt="" src="files_files/spacer.gif" width=1 border=0></TD>
+</TR>
+
+
+
+
+<TR>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></P><P>&nbsp;</P></TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+		&nbsp;</TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+		<span class="header4"><a name="CHP_HIST"></a>Historical Format</span><BR> The format of the 
+        CHP file is an binary file were values are stored in little-endian format. 
+        Defined below is for CHP files generated 
+        by algorithm in MAS 5.0 and above. CHP files generated in older versions 
+        of software are not described below.<P>The 
+file contents are define by:</P>
+<p>
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" span CLASS=content HEIGHT="2"> 
+<TR>
+	<TD WIDTH="110" HEIGHT="12"><B>Item</B></TD>
+	<TD width="70%" HEIGHT="12"><B>Description</B></TD>
+	<TD WIDTH="214" HEIGHT="12"><B>Type</B></TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">1</TD>
+	<TD width="70%" HEIGHT="14">Label. Always set to &quot;GeneChip Sequence File&quot;.</TD>
+	<TD WIDTH="214" HEIGHT="14">char[22]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">2</TD>
+	<TD width="70%" HEIGHT="14">Version number. 12 for MAS 5 CHP files, 13 for 
+    GCOS 1.0 CHP files.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">3</TD>
+	<TD width="70%" HEIGHT="14"> Algorithm name length.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">4</TD>
+	<TD width="70%" HEIGHT="14"> Algorithm name.</TD>
+	<TD WIDTH="214" HEIGHT="14">char[ length defined above]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">5</TD>
+	<TD width="70%" HEIGHT="14"> Algorithm version length. <font color="#FF0000">
+	Not available in v8. Only in &gt;= 10</font></TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">6</TD>
+	<TD width="70%" HEIGHT="14"> Algorithm version.<font color="#FF0000"> Not 
+	available in v8. only in &gt;= 10</font></TD>
+	<TD WIDTH="214" HEIGHT="14">char[ length defined above]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">7</TD>
+	<TD width="70%" HEIGHT="14"> Algorithm parameters length.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">8</TD>
+	<TD width="70%" HEIGHT="14"> Algorithm parameters (the string is a space 
+    delimited TAG=VALUE list of algorithm parameters). </TD>
+	<TD WIDTH="214" HEIGHT="14">char[ length defined above]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">9</TD>
+	<TD width="70%" HEIGHT="14"> Algorithm summary length.<font color="#FF0000"> 
+	Not available in v8. only in &gt;= 10</font></TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">10</TD>
+	<TD width="70%" HEIGHT="14"> Algorithm summary values (the string is a space 
+    delmited TAG=VALUE list of summary values). An example of a summary value is 
+    &quot;RawQ&quot;.<font color="#FF0000"> Not available in v8. only in &gt;= 10</font></TD>
+	<TD WIDTH="214" HEIGHT="14">char[ length defined above]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">11</TD>
+	<TD width="70%" HEIGHT="14"> The number of rows (of features) in the array.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">12</TD>
+	<TD width="70%" HEIGHT="14"> The number of columns (of features) in the 
+    array.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">13</TD>
+	<TD width="70%" HEIGHT="14"> The number of probe sets defined in the array.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">14</TD>
+	<TD width="70%" HEIGHT="14"> A value that defines the maximum probe set 
+    number in the array. The probe set number is not displayed or used by the 
+    software and will be deprecated in future versions.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">15</TD>
+	<TD width="70%" HEIGHT="14"> The number of QC probe sets stored in the file.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">16</TD>
+	<TD width="70%" HEIGHT="14"> The probe set number for each probe set in the 
+    array. This information is not displayed or used by the software and will be 
+    deprecated in future versions.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer[ number of probe sets]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">17</TD>
+	<TD width="70%" HEIGHT="14"> The number of probe pairs in each probe set. If 
+    the max probe set number is greater than the number of probe sets, the value 
+    is 0 for the array entries after the number of probe sets.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer[ maximum probe set number] </TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">18</TD>
+	<TD width="70%" HEIGHT="14"> An indicator to the type of probe set 
+    (expression, genotyping, etc.).&nbsp; See the definition of 
+UnitType in the CDF section. If the max probe set number is greater than the 
+    number of probe sets, the value is 0 for the array entries after the number 
+    of probe sets.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer[ maximum probe set number]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">19</TD>
+	<TD width="70%" HEIGHT="14"> The number of probes per element of a probe 
+    set. This value is 2 for expression tiles indicating probe pairs.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer[ number of probe sets]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">20</TD>
+	<TD width="70%" HEIGHT="14"> Probe array type</TD>
+	<TD WIDTH="214" HEIGHT="14">char[ 256]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="15">21</TD>
+	<TD width="70%" HEIGHT="15"> Parent CEL file name.</TD>
+	<TD WIDTH="214" HEIGHT="15">char[ 256]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">22</TD>
+	<TD width="70%" HEIGHT="14"> Programmatic identifier length.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">23</TD>
+	<TD width="70%" HEIGHT="14"> Programmatic identifier of the COM component 
+    that implements the algorithm.</TD>
+	<TD WIDTH="214" HEIGHT="14">char[ length defined above]</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">24</TD>
+	<TD width="70%" HEIGHT="14"> Probe set results. This item is repeated for 
+    each probe set in the array.</TD>
+	<TD WIDTH="214" HEIGHT="14">see table below.</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">25</TD>
+	<TD width="70%" HEIGHT="14"> Resequencing array results</TD>
+	<TD WIDTH="214" HEIGHT="14">see table below.</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">26</TD>
+	<TD width="70%" HEIGHT="14"> QC probe set information. This item is repeated 
+    for each QC probe set in the array.</TD>
+	<TD WIDTH="214" HEIGHT="14">see table below.</TD>
+</TR>
+</TABLE>
+
+<P><span class="header4">Probe Set Results (Expression)</span><BR>
+The following table defines the results for an expression probe set.</P>
+<P>
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" span CLASS=content HEIGHT="2"> 
+<TR>
+	<TD WIDTH="110" HEIGHT="12"><B>Item</B></TD>
+	<TD width="70%" HEIGHT="12"><B>Description</B></TD>
+	<TD WIDTH="214" HEIGHT="12"><B>Type</B></TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">1</TD>
+	<TD width="70%" HEIGHT="14">The number of probe pairs.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">2</TD>
+	<TD width="70%" HEIGHT="14">The number of probe pairs used by the algorithm.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">3</TD>
+	<TD width="70%" HEIGHT="14">Unused* <font color="#FF0000">For version 
+	version &gt;= 7 and &lt;= 12 this value is the number of probe pairs post 
+	processing.</font></TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">4</TD>
+	<TD width="70%" HEIGHT="14">The number of probe pairs used by the algorithm 
+    (repeated). <font color="#FF0000">version &lt; 12 Positive Score</font></TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">5</TD>
+	<TD width="70%" HEIGHT="14">Unused* <font color="#FF0000">version &lt;= 12, 
+	negative score</font></TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">6</TD>
+	<TD width="70%" HEIGHT="14">Unused* <font color="#FF0000">version &lt;= 12, 
+	PMExcess</font></TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">7</TD>
+	<TD width="70%" HEIGHT="14">Unused* <font color="#FF0000">version &lt;= 12, 
+	MMExcess (for version &lt; 12 skip the remaining items and goto the MAS4 table 
+	below)</font></TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">8</TD>
+	<TD width="70%" HEIGHT="14">Detection p-value</TD>
+	<TD WIDTH="214" HEIGHT="14">float</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">9</TD>
+	<TD width="70%" HEIGHT="14">Unused*</TD>
+	<TD WIDTH="214" HEIGHT="14">float</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">10</TD>
+	<TD width="70%" HEIGHT="14">Signal</TD>
+	<TD WIDTH="214" HEIGHT="14">float</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">11</TD>
+	<TD width="70%" HEIGHT="14">Detection (0 - present, 1 - marginal, 2 - 
+    absent, 3 - no call).</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">12</TD>
+	<TD width="70%" HEIGHT="14">Probe pair data, repeated for each probe pair in 
+    the set:<p>Background - float
+    <br>Flag indicating if the pair is used in the analysis (0 - not used, 2 - 
+    used) - integer<br>PM X coordinate -  integer (version 12), unsigned short (version 13)
+    <br>PM Y coordinate -  integer (version 12), unsigned short (version 13)
+    <br>PM intensity - float*<br>PM stdev - float*<br>PM pixel count - integer*
+    <br>PM masked - char*<br>PM outlier - char*<br>
+    MM X coordinate -  integer (version 12), unsigned short (version 13)
+    <br>MM Y coordinate -  integer (version 12), unsigned short (version 13)
+    <br>MM intensity - float*<br>MM stdev - float*<br>MM pixel count - integer*<br>
+    MM masked - char*<br>MM outlier - char*</TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">13</TD>
+	<TD width="70%" HEIGHT="14">Comparison analysis results exists flag.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">14</TD>
+	<TD width="70%" HEIGHT="14">Comparison analysis results (only if exists).<p>
+    Number of probe pairs in common - integer<br>
+    Unused* - integer<br>
+    Unused* - integer<br>
+    Unused* - integer<br>
+    Change (1 - increase, 2 - decrease, 3 - moderate increase, 4 - moderate 
+    decrease, 5 - no change, 6 - no call) - integer<br>
+    Baseline absent flag - char<br>
+    Unused*&nbsp; - char<br>
+    Unused* - integer<br>
+    Unused* - integer<br>
+    Signal log ratio high - float**<br>
+    Unused - integer<br>
+    Unused* - integer<br>
+    Signal log ratio - float**<br>
+    Unused* - integer<br>
+    Signal log ratio low - float**<br>
+    Change p-value&nbsp; - float ** (version 12) or float (version 13)</TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</TR>
+</TABLE>
+
+<P>* Only stored in version 12 files.<br>
+** The floating point value is stored as an integer. Divide the integer value 
+by 1000 to obtain the floating point value.</P>
+		<P>MAS4</P>
+		<P>AverageRatio (float)**</P>
+		<P>LogAverageRatio (float)**</P>
+		<P>AverageIntensityDifference (float)**</P>
+		<P>Call (integer) ( 0 = P, 1 = M, 2 = A )</P>
+		<P>For each probe&nbsp; pair:</P>
+		<blockquote>
+			<P>- background (float**)</P>
+			<P>- Use pair flag (int) 0 - not used, 1 - unknown, 2 - used</P>
+			<ul>
+				<li>PM X (int)</li>
+				<li>PM Y (int)</li>
+				<li>PM Intensity (float**)</li>
+				<li>PM Stdv (float**)</li>
+				<li>PM pixels (integer)</li>
+				<li>PM masked flag (version &gt;= 8)</li>
+				<li>PM outlier flag (version &gt;= 8)</li>
+			</ul>
+			<P>- repeat above for MM probe.</P>
+		</blockquote>
+		<P>end probe pair loop:</P>
+		<P>Comparison analysis results exists f lag (integer)</P>
+		<P>If comparison data exists then the following is stored:</P>
+		<blockquote>
+			<P>positive increase (int)</P>
+			<P>negative decrease (int) (version &lt;= 12)</P>
+			<P>positive delta (int) (version &lt;= 12)</P>
+			<P>negative delta (int) (version &lt;= 12)</P>
+			<P>diff call (int) 0=unknown, 1=increase, 2=decrease, 3=moderate 
+			inc, 4=moderate decrease, 5=no change</P>
+			<P>baseline is absent flag (char)</P>
+			<P>average difference rounding flag (char) (version &lt;= 12)</P>
+			<P>ratio positive pairs (float**) (version &lt;= 12)</P>
+			<P>ratio negative pairs (float **) (version &lt;= 12)</P>
+			<P>avg ratio delta (float**)</P>
+			<P>avg intensity difference (float**)</P>
+			<P>change in average intensity difference (float**) (version &lt;= 12)</P>
+			<P>average difference ratio (float**)</P>
+			<P>log average ratio change (float**) (version &lt;= 12)</P>
+			<P>score delta ratio (float**)</P>
+			<P>sort score (float ** for version &lt; 12)</P>
+			<P>&nbsp;</P>
+			<P>&nbsp;</P>
+		</blockquote>
+		<P>&nbsp;</P>
+
+<P><span class="header4">QC Probe Set Information</span><BR>
+The following table defines information for a QC probe set.</P>
+<P>
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" span CLASS=content HEIGHT="2"> 
+<TR>
+	<TD WIDTH="110" HEIGHT="12"><B>Item</B></TD>
+	<TD width="70%" HEIGHT="12"><B>Description</B></TD>
+	<TD WIDTH="214" HEIGHT="12"><B>Type</B></TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">1</TD>
+	<TD width="70%" HEIGHT="14">Number of probes in the set.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">2</TD>
+	<TD width="70%" HEIGHT="14">The type of QC probe set. See the CDF file 
+    section for details on the type.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">3</TD>
+	<TD width="70%" HEIGHT="14"> Probe information, repeated for each probe in 
+    the set, consisting of:<p>X coordinate on array - integer
+    <br>Y coordinate on array - integer
+    <br>Intensity value from CEL file - float
+        <font color="#FF0000">** for version &lt; 11</font><br>Stdev value from CEL file - float&nbsp;
+	<font color="#FF0000">** for version &lt; 11</font><br>Number of pixels from CEL file - integer
+        <br>Background value - float <font color="#FF0000">Not available in v8. 
+	only in &gt;= 12</font></TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</TR>
+</TABLE>
+        <p>Types used are defined as: integer 
+(A 32-bit signed integer),  float (An 32-bit floating-point 
+number), short (16-bit signed integer) and char (8-bit character).<font color="#FF0000"><br>
+** The floating point value is stored as an integer. Divide the integer value 
+by 1000 to obtain the floating point value.</font><p>
+&nbsp;</p>
+</TD>
+			<td>&nbsp;</td>
+</TR>
+
+
+
+
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

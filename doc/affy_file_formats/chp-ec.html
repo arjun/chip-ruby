@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix Expression Console CHP File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® Expression Console CHP Data File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>  
+
+<TR>
+	<TD vAlign=top align=right style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=11 alt="" src="files_files/bullet2.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">&nbsp;</TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">CHP FILE</TD>
+			<td>&nbsp;</td>
+</TR>
+
+<TR>
+	<TD vAlign=top align=left colSpan=4 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+			<IMG height=10 alt="" src="files_files/spacer.gif" width=1 border=0></TD>
+</TR>
+
+
+
+
+<TR>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></P><P>&nbsp;</P></TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+		&nbsp;</TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+		<span class="header4">Description</span><BR>
+		The CHP files generated by the Expression Console software contain probe set analysis results 
+		from the MAS5, PLIER, RMA and DABG algorithms.<p>
+<span class="header4">
+	Format</span></p>
+	<P>The format of the CHP file 
+	generated by the Command Console software uses the Command Console <a href="generic.html">
+	binary</a> data format. The following describes the data sets and groups 
+	stored in 
+	the file.</P>
+	<P>The generic data header shall include:</P>
+		<P>The parameters stored in the header of the file include algorithm 
+		parameters (those whose names are prefixed with &quot;affymetrix-algorithm-parameter-&quot;) 
+		and summary statistics (those whose names are prefixed with &quot;affymetrix-chipsummary-&quot;). 
+		These parameters are algorithm specific.</P>
+		<P><b>MAS5 Results</b></P>
+		<P>The analysis results from the MAS5 algorithm are stored in a file 
+		with a single group with a single data set. 
+		The data set header will contain a set of parameters to define the 
+		column labels. See the MAS5 Statistical Algorithm Description document 
+		on the Affymetrix web site for a description on each metric.</P>
+		<P>The data type identifier is set to: &quot;affymetrix-expression-probeset-analysis&quot;</P>
+		<P>The data group containing the analysis results is called &quot;Expression 
+		Results&quot;. It contains a single data set, also called &quot;Expression 
+		Results&quot;, containing the analysis results. The data set contains the 
+		following columns.<br>
+		</P>
+	<table class="content" border=1 id="table6" width="563">
+		<tr>
+			<td width="153"><b>Column Name</b></td>
+			<td width="394"><b>Column Type</b></td>
+		</tr>
+		<tr>
+			<td width="153">Probe Set Name</td>
+			<td width="394">Ascii</td>
+		</tr>
+		<tr>
+			<td width="153"><span style="font-size: 10.0pt; font-family: Arial">Detection
+			</span></td>
+			<td width="394">UByte (0 = present, 1 = marginal, 2 = absent, no 
+			call otherwise)</td>
+		</tr>
+		<tr>
+			<td width="153"><span style="font-size: 10.0pt; font-family: Arial">Detection 
+			p-value </span></td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153">Signal</td>
+			<td width="394">Float</td>
+		</tr>
+		<tr>
+			<td width="153">Number of Pairs</td>
+			<td width="394">UShort</td>
+		</tr>
+		<tr>
+			<td width="153">Number of Pairs Used</td>
+			<td width="394">UShort</td>
+		</tr>
+		</table>
+		<p><font size="2"><span style="font-family: Arial">A second data group 
+		provides storage for the background zone information. This is the 
+		background value computed by the MAS5 algorithm on a per zone basis.
+		</span></font>The data set header will contain a set of parameters to 
+		define the column labels.</p>
+		<p>The data group name is called &quot;Background Zone Data&quot;. It contains a 
+		single data set, also called &quot;Background Zone Data&quot;, containing the 
+		background values for each zone. The data set contains the following 
+		columns.<br>
+		</p>
+	<table class="content" border=1 id="table16" width="220">
+		<tr>
+			<td width="100"><b>Column Name</b></td>
+			<td width="104"><b>Column Type</b></td>
+		</tr>
+		<tr>
+			<td width="100">Center X</td>
+			<td width="104">Float</td>
+		</tr>
+		<tr>
+			<td width="100"><font size="2"><span style="font-family: Arial">Center Y</span></font></td>
+			<td width="104">Float</td>
+		</tr>
+		<tr>
+			<td width="100"><font size="2"><span style="font-family: Arial">Background</span></font></td>
+			<td width="104">Float</td>
+		</tr>
+		<tr>
+			<td width="100">SmoothFactor</td>
+			<td width="104">Float</td>
+		</tr>
+		</table>
+		<P><b>RMA/PLIER Results</b></P>
+		<P>The analysis results from the RMA or PLIER algorithms are stored in 
+		file with a single group with a single data set. 
+		The data set header will contain a set of parameters to define the 
+		column labels. See the MAS5 Statistical Algorithm Description document 
+		on the Affymetrix web site for a description on each metric.</P>
+		<P>The data type identifier is set to: &quot;affymetrix-quantification-analysis&quot;</P>
+		<P>The data group containing the analysis results is called 
+		&quot;Quantification&quot;. It contains a single data set, also called 
+		&quot;Quantification&quot;, containing the analysis results. The data set contains 
+		the following columns.<br>
+		</P>
+	<table class="content" border=1 id="table19" width="297">
+		<tr>
+			<td width="153"><b>Column Name</b></td>
+			<td width="128"><b>Column Type</b></td>
+		</tr>
+		<tr>
+			<td width="153">ProbeSetName</td>
+			<td width="128">Ascii</td>
+		</tr>
+		<tr>
+			<td width="153">Quantification</td>
+			<td width="128">Float</td>
+		</tr>
+		</table>
+		<P><b>PLIER with DABG Results</b></P>
+		<P>The analysis results from the PLIER with DABG (detected above 
+		background) algorithms are stored in file with a single group with a single data set. 
+		The data set header will contain a set of parameters to define the 
+		column labels. See the MAS5 Statistical Algorithm Description document 
+		on the Affymetrix web site for a description on each metric.</P>
+		<P>The data type identifier is set to: &quot;affymetrix-quantification-detection-analysis&quot;</P>
+		<P>The data group containing the analysis results is called &quot;QuantificationDetection&quot;. 
+		It contains a single data set, also called &quot;QuantificationDetection&quot;, 
+		containing the analysis results. The data set contains the following 
+		columns.<br>
+		</P>
+	<table class="content" border=1 id="table20" width="297">
+		<tr>
+			<td width="153"><b>Column Name</b></td>
+			<td width="128"><b>Column Type</b></td>
+		</tr>
+		<tr>
+			<td width="153">ProbeSetName</td>
+			<td width="128">Ascii</td>
+		</tr>
+		<tr>
+			<td width="153">Quantification</td>
+			<td width="128">Float</td>
+		</tr>
+		<tr>
+			<td width="153">Detection</td>
+			<td width="128">Float</td>
+		</tr>
+		</table>
+		<p>
+&nbsp;</p>
+</TD>
+			<td>&nbsp;</td>
+</TR>
+
+
+
+
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

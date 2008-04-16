@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix DAT File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® DAT Data File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>  
+
+<tr> <TD vAlign=top align=right width=11 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     ><IMG height=11 
+                        alt="" src="files_files/bullet2.gif" width=11 
+                        border=0></TD>
+  <TD vAlign=top align=left width=8 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     ><IMG height=1 alt="" 
+                        src="files_files/spacer.gif" width=5 border=0></TD><TD class=header3 vAlign=center align=left 
+                         style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     ><a name="DAT_FILE"></a>DAT FILE</TD></tr> <tr> 
+    <TD vAlign=top align=left colSpan=3 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none"  
+                     ><IMG height=10 
+                        alt="" src="files_files/spacer.gif" width=1 
+                      border=0></TD></tr> <tr> <TD vAlign=top align=left width=11 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     ><IMG height=1 alt="" 
+                        src="files_files/spacer.gif" width=11 border=0></TD>
+    <TD vAlign=top align=left width=8 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     > <P><IMG height=1 alt="" 
+                        src="files_files/spacer.gif" width=5 border=0></P><P>&nbsp;</P></TD><TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" 
+                     > <P><span class="header4">Description</span><BR> The DAT 
+file contains pixel intensity values collected from an Affymetrix scanner.</P>
+    <P>The information below will describe the following versions:</P>
+	<ul>
+		<li> <a href="#V1">Version 1 format</a> is generated by the MAS and 
+		GCOS 1.x software.</li>
+	<li><a href="#calvin">Command Console version 1</a> is generated by the 
+	Command Console software. This is stored in 
+	the Command Console &quot;<a href="generic.html">generic</a>&quot; data file format.</li>
+	</ul>
+	<P>&nbsp;</P><P><span class="header4"><a name="V1"></a>Version 1 Format</span><BR> 
+The file is a binary file with a 512 byte header followed by 16 bit unsigned integer 
+pixel intensity values. Values are stored in little-endian format.</P><P><span class="header4">Header</span><BR> 
+The 512 byte header contains the following information:</P><TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" span CLASS=content HEIGHT="88"> 
+<TR> <TD WIDTH="110" HEIGHT="14"><B>Item</B></TD><TD width="70%" HEIGHT="14"><B>Description</B></TD><TD WIDTH="214" HEIGHT="14"><B>Type</B></TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14">1</TD><TD width="70%" HEIGHT="14">Type of file, 
+must be 0xFC.</TD><TD WIDTH="214" HEIGHT="14">BYTE</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14">2</TD><TD width="70%" HEIGHT="14">Number 
+of pixels per line.</TD><TD WIDTH="214" HEIGHT="14">WORD</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14">3</TD><TD width="70%" HEIGHT="14"> 
+Number of lines in the image.</TD><TD WIDTH="214" HEIGHT="14">WORD</TD></TR> <TR> 
+<TD WIDTH="110" HEIGHT="14"> 4</TD><TD width="70%" HEIGHT="14">The total number 
+of data points (pixels) in the image.</TD><TD WIDTH="214" HEIGHT="14">DWORD</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 5</TD><TD width="70%" HEIGHT="14">Minimum pixel 
+value in the image.</TD><TD WIDTH="214" HEIGHT="14"> DWORD</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 
+6</TD><TD width="70%" HEIGHT="14"> Maximum pixel value in the image.</TD><TD WIDTH="214" HEIGHT="14">DWORD</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 7</TD><TD width="70%" HEIGHT="14">Mean pixel 
+value.</TD><TD WIDTH="214" HEIGHT="14"> double</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 
+8</TD><TD width="70%" HEIGHT="14"> Standard deviation of the pixel values</TD><TD WIDTH="214" HEIGHT="14">double</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 9</TD><TD width="70%" HEIGHT="14">Number of 
+pixels per row (padded with spaces), preceded with "CLS=".</TD><TD WIDTH="214" HEIGHT="14">char[9]</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 10</TD><TD width="70%" HEIGHT="14">Number of 
+rows in the image (padded with spaces), preceded with "RWS=".</TD><TD WIDTH="214" HEIGHT="14">char[9]</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 11</TD><TD width="70%" HEIGHT="14">Pixel width 
+in micrometers (padded with spaces), preceded with "XIN="</TD><TD WIDTH="214" HEIGHT="14">char[7]</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 12</TD><TD width="70%" HEIGHT="14">Pixel height 
+in micrometers (padded with spaces), preceded with "YIN=".</TD><TD WIDTH="214" HEIGHT="14">char[7]</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 13</TD><TD width="70%" HEIGHT="14">Scan speed 
+in millimeters per second (padded with spaces), preceded with "VE=".</TD><TD WIDTH="214" HEIGHT="14"> 
+char[6]</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 14</TD><TD width="70%" HEIGHT="14"> 
+Temperature in degrees Celsius (padded with spaces). If no temperature was set 
+then the entire field is empty.</TD><TD WIDTH="214" HEIGHT="14">char[7]</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 15</TD><TD width="70%" HEIGHT="14">Laser power 
+in milliwatts or microwatts (padded with spaces.</TD><TD WIDTH="214" HEIGHT="14">char[4]</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 16</TD><TD width="70%" HEIGHT="14">Date and 
+time of scan (padded with spaces).</TD><TD WIDTH="214" HEIGHT="14"> char[18]</TD></TR> 
+<TR> <TD WIDTH="110" HEIGHT="14"> 17</TD><TD width="70%" HEIGHT="14"> <p class="MsoNormal" style="LINE-HEIGHT: normal" 
+                             >There are several sub-fields in this field. The 
+first sub field is the scanner ID, sometimes&nbsp; followed by a number, followed 
+by three spaces. If the scanner ID is absent, the field consists of four spaces.</p><p class="MsoNormal" style="LINE-HEIGHT: normal" 
+                             >Next are 10 structured comment fields. Each field 
+is preceded by the delimiter 0x14 and a space. The field is followed by a space 
+and 0x14. Only field two is valid, the other 9 fields are obsolete. Field 2 contains 
+the probe array type, followed by .1sq. The 1sq extension is also obsolete.</p><p class="MsoNormal" style="LINE-HEIGHT: normal" 
+                             >Next (after the last structured field) there is 
+the chip orientation preceded by a space.</p><p><span style="FONT-SIZE: 10pt; LINE-HEIGHT: 150%; FONT-FAMILY: Arial">The 
+rest of the field is filled with nulls (zeros)</span></p></TD><TD WIDTH="214" HEIGHT="14"> 
+char[220]</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 18</TD><TD width="70%" HEIGHT="14"> 
+<span style="FONT-SIZE: 10pt; LINE-HEIGHT: 150%; FONT-FAMILY: Arial">Average DC 
+Offset of the scanner for this image.</span></TD><TD WIDTH="214" HEIGHT="14"> 
+double</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 19</TD><TD width="70%" HEIGHT="14"> 
+Standard deviation of the average DC offset.</TD><TD WIDTH="214" HEIGHT="14"> 
+double</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 20</TD><TD width="70%" HEIGHT="14"> 
+Number of samples taken in determining the DC offset.</TD><TD WIDTH="214" HEIGHT="14"> 
+DWORD</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 21</TD><TD width="70%" HEIGHT="14"> 
+Coordinates of the grid's upper left corner.</TD><TD WIDTH="214" HEIGHT="14"> 
+POINTS</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 22</TD><TD width="70%" HEIGHT="14"> 
+Coordinates of the grid's upper right corner.</TD><TD WIDTH="214" HEIGHT="14"> 
+POINTS</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 23</TD><TD width="70%" HEIGHT="14"> 
+Coordinates of the grid's lower right corner.</TD><TD WIDTH="214" HEIGHT="14"> 
+POINTS</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 24</TD><TD width="70%" HEIGHT="14"> 
+Coordinates of the grid's lower left corner.</TD><TD WIDTH="214" HEIGHT="14"> 
+POINTS</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 25</TD><TD width="70%" HEIGHT="14"> 
+Cell margin used for computing the cells intensity value.</TD><TD WIDTH="214" HEIGHT="14"> 
+WORD</TD></TR> <TR> <TD WIDTH="110" HEIGHT="14"> 26</TD><TD width="70%" HEIGHT="14"> 
+Name of the experiment padded with nulls.</TD><TD WIDTH="214" HEIGHT="14"> char[154]</TD></TR> 
+</TABLE><P>Types used are defined as: BYTE (An 8-bit unsigned integer), SHORT 
+(A 16-bit integer), WORD (A 16-bit unsigned integer), DWORD (A 32-bit unsigned 
+integer), double (An 64-bit floating-point number), char (8-bit character) and 
+POINTS (A structure that defines coordinates of a point. The contents of the structure 
+are two SHORT values describing the X and Y values of the coordinate).</P><P><span class="header4">Data</span><BR> 
+The pixel intensity data is stored following the header at byte 512. Intensity 
+values are stored as 16 bit unsigned integer values. Data is stored by rows.</P>
+	<P><span class="header4">
+	<a name="calvin"></a>Command Console Format</span><BR> The format of the DAT file 
+	generated by the Command Console software uses the Command Console <a href="generic.html">
+	generic</a> data format. The following describes the data sets and groups in 
+	the file.</P>
+	<P>The generic data header shall include:</P>
+	<blockquote>
+		<P>The data type identifier is set to &quot;affymetrix-calvin-scan-acquisition&quot;</P>
+		<P>The parameters stored in the file include:</P>
+		<table class="content" border=1 id="table4">
+		<tr>
+			<td><b>Parameter Name</b></td>
+			<td><b>Definition</b></td>
+		</tr>
+		<tr>
+			<td>affymetrix-array-type</td>
+			<td>The probe array type.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-pixel-size</td>
+			<td>The pixel size.</td>
+		</tr>
+			<td>affymetrix-scanner-type</td>
+			<td>The scanner type. e.g M10 for the GCS3000 high resolution scanner.</td>
+		</tr>
+			<td>affymetrix-scanner-id</td>
+			<td>The scanner ID</td>
+		</tr>
+			<td>affymetrix-scan-date</td>
+			<td>The date of the scan.</td>
+		</tr>
+			<td>affymetrix-pixel-rows</td>
+			<td>The number of rows of pixels.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-pixel-cols</td>
+			<td>The number of columns of pixels.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-partial-dat-header</td>
+			<td>DAT header string without min and max intensity. Present if this 
+			is a native Command Console DAT file.</td>
+		</tr>
+		<tr>
+			<td>affyemtrix-max-pixel-intensity</td>
+			<td>Max pixel intensity.&nbsp; Present if this is a native Command 
+			Console 
+			DAT file.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-min-pixel-intensity</td>
+			<td>Min pixel intensity. Present if this is a native Command Console DAT 
+			file.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-full-dat-header</td>
+			<td>Full DAT header string.&nbsp; Present if this is a DAT file 
+			converted from GCOS.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-image-orientation</td>
+			<td>A code indicating the orientation of the image.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-file-version</td>
+			<td>File version.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-image-flip-flag</td>
+			<td>Indicates if the image has been flipped about the y-axis.</td>
+		</tr>
+		</table>
+	</blockquote>
+	<P>Array file parameters (if available) will be stored within the parent 
+	data header object.&nbsp; Parameters include:</P>
+	<blockquote><table class="content" border=1 id="table4">
+		<tr>
+			<td><b>Parameter Name</b></td>
+			<td><b>Definition</b></td>
+		</tr>
+		<tr>
+			<td>affymetrix-array-id</td>
+			<td>A GUID that identifies the array.</td>
+		</tr>
+		<tr>
+			<td>affymetrix-array-barcode</td>
+			<td>The array barcode.</td>
+		</tr>
+		</table></blockquote>
+	<P>The data is stored in a single group with 4 data sets. The data 
+	sets are defined as:</P>
+	<P>
+	<table class="content" border=1 id="table3">
+		<tr>
+			<td><b>Data Set Name</b></td>
+			<td><b>Description</b></td>
+			<td><b>Number of Columns</b></td>
+			<td><b>Column Name</b></td>
+			<td><b>Column Type</b></td>
+			<td><b>Description</b></td>
+		</tr>
+		<tr>
+			<td>Pixel</td>
+			<td>The intensity values for each pixel.</td>
+			<td>1</td>
+			<td>Pixel</td>
+			<td>USHORT</td>
+			<td>The pixel intensities.</td>
+		</tr>
+		<tr>
+			<td>Stats</td>
+			<td>The minimum and maximum pixel value.</td>
+			<td>2</td>
+			<td>Min Intensity<br>Max Intensity</td>
+			<td>USHORT<br>USHORT</td>
+			<td>The minimum pixel value.<br>The 
+			maximum pixel value.</td>
+		</tr>
+		<tr>
+			<td>GlobalGrid</td>
+			<td>The status of the grid and the 4 corners that define the global grid.</td>
+			<td>9</td>
+			<td><p>GridStatus</p><p>Upper left x<br>Upper left y</p><p>Upper 
+			right x<br>Upper right y</p><p>Lower right x<br>Lower right y</p><p>
+			Lower left x<br>Lower left y</p></td>
+			<td><p>UINT</p><p>FLOAT<br>FLOAT</p><p>FLOAT<br>FLOAT</p><p>FLOAT<br>FLOAT</p><p>FLOAT<br>FLOAT</p></td>
+			<td>
+			<p>The status of the grid. OK=1, Error=2, Manual Adjust=4</p>
+			<p>The X coordinate of the upper left corner<br>The Y coordinate of the upper left corner</p>
+			<p>
+			The X coordinate of the upper right corner<br>The Y coordinate of the upper right corner</p>
+			<p>The X coordinate of the lower right corner<br>The Y coordinate of the lower right corner</p>
+			<p>The X coordinate of the lower left corner<br>The Y coordinate of the lower 
+			left corner</td>
+		</tr>
+		<tr>
+			<td>Subgrid</td>
+			<td>The status of the grid and the 4 corners that define each sub-grid.</td>
+			<td>9</td>
+			<td><p>GridStatus</p><p>Upper left x<br>Upper left y</p><p>Upper 
+			right x<br>Upper right y</p><p>Lower right x<br>Lower right y</p><p>
+			Lower left x<br>Lower left y</p></td>
+			<td><p>UINT</p><p>FLOAT<br>FLOAT</p><p>FLOAT<br>FLOAT</p><p>FLOAT<br>FLOAT</p><p>FLOAT<br>FLOAT</p></td>
+			<td>The status of the grid. OK=1, Error=2, Manual Adjust=4<p>The X coordinate of the upper left corner<br>The Y coordinate of the upper left corner</p>
+			<p>
+			The X coordinate of the upper right corner<br>The Y coordinate of the upper right corner</p>
+			<p>The X coordinate of the lower right corner<br>The Y coordinate of the lower right corner</p>
+			<p>The X coordinate of the lower left corner<br>The Y coordinate of the lower 
+			left corner</td>
+		</tr>
+		</table>
+	<P>&nbsp;</P></TD></tr> 
+
+
+
+
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

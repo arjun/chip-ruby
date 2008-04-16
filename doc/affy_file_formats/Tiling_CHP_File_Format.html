@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix Tiling CHP File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® Tiling Analysis Software CHP File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>  
+
+<tr>
+	<TD vAlign=top align=right width=11 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+	<IMG height=11 alt="" src="files_files/bullet2.gif" width=11 border=0></TD>
+ 	<TD vAlign=top align=left width=8 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+ 	<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></TD>
+ 	<TD class=header3 vAlign=center align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+ 	<a name="CEL_FILE"></a>TILING ANALYSIS SOFTWARE CHP FILE</TD>
+</tr>                  
+<tr> 
+    <TD vAlign=top align=left colSpan=3 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none"  >
+    <IMG height=10 alt="" src="files_files/spacer.gif" width=1 border=0></TD>
+ </tr>
+                      
+ <tr>
+ 	<TD vAlign=top align=left width=11 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+ 	<IMG height=1 alt="" src="files_files/spacer.gif" width=11 border=0></TD>
+    <TD vAlign=top align=left width=8 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+    <P><IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></P>
+    <P>&nbsp;</P></TD>
+    <TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+    <P><span class="header4">Description</span><BR>The Tiling Analysis 
+	Software stores the resulting signal and p-values from its one and two 
+	sample analysis into a CHP file following the
+	<a href="http://www.affymetrix.com/genechip/developer">Command Console generic data 
+	file format specifications</a>. Older versions of the Tiling Analysis 
+	Software used the <a href="http://www.affymetrix.com/genechip/developer">BAR 
+	file format</a> 
+	to store the signal and p-values.</P>
+	<PThis document will describe the contents, including the data sets and 
+	data groups, of the CHP file to store the tiling signal and p-values.</P>
+	<P><span class="header4">
+	<a name="calvin"></a>CHP File Contents</span><BR> The Command Console generic data 
+	file format is broken down into a header and data sections. Below are the 
+	items that are stored in the tiling CHP file for each section of the file.</P>
+	<P><span class="header3">Generic Data Header</span></P>
+	<blockquote>
+		<P>The data type identifier is set to &quot;affymetrix-tiling-analysis&quot;</P>
+		<P>The following table defines the parameters stored in the CHP 
+		file header. These are the parameters used by the tiling algorithm to 
+		calculate the signal and p-values:</P>
+		<table class="content" border=1>
+			<tr>
+				<td><b>Parameter Name</b></td>
+				<td><b>Definition</b></td>
+			</tr>
+			<tr>
+			<td>Param-file_type</td>
+			<td>Describes the data stored in the data matrix. This is a string 
+			with the following possible values:<p>&quot;signal&quot; - indicates that the data in 
+		the matrix are the calculated signal value.</p>
+			<p>&quot;p-value&quot; - indicates that the data in the matrix are the calculated 
+		p-values.</td>
+			</tr>
+			<tr>
+			<td>Param-scale</td>
+			<td>Describes the scale of the data in the matrix. This is a string 
+			with the following possible values:<p>&quot;Linear&quot; - indicates linear 
+			scale for either the signal or p-values.<p>&quot;Log10&quot; - indicates the 
+			log base 10 scale for the signal values.<p>&quot;Log2&quot; - indicates the 
+			log base 2 scale for the signal values.<p>&quot;-10Log10&quot; - indicates the 
+			-10 * log base 10 scale for the p-values.</td>
+			</tr>
+			<tr>
+				<td>Param-genomic_map</td>
+				<td>The BPMAP file used in the analysis. This is a string value.</td>
+			</tr>
+			<td>Param-Bandwidth</td>
+			<td>The bandwidth used in the analysis. This is a integer value.</td>
+			</tr>
+			<td>Param-TailType</td>
+			<td>The tail type used in the analysis. This is a string with 
+			the following possible values:<p>&quot;OneSidedLower&quot; - indicating a one 
+			sided lower test.</p>
+			<p>&quot;OneSideUpper&quot; or &quot;OneSidedUpper&quot; - indicating a one sided upper test.</p>
+			<p>&quot;TwoSided&quot; - indicating a two sided test.</td>
+			</tr>
+			<tr>
+			<td>Param-probe_coordinate_convention</td>
+			<td>Indicates if the file contains positions that are relative to 
+			the center or left of the probe. This is a string with the following 
+			possible values:<p>&quot;0_indexed_center&quot; - indicates that the position 
+			is relative to the center of the probe.</p>
+			<p>If this value is missing the position is assumed to be relative 
+			to the left of the probe.</td>
+			</tr>
+			<tr>
+			<td>Algorithm-Name</td>
+			<td>The name of the algorithm that created the CHP file results.</td>
+			</tr>
+			<tr>
+			<td>Algorithm-Version</td>
+			<td>The algorithms version number.</td>
+			</tr>
+			<tr>
+			<td>NumberSequences</td>
+			<td>The number of sequences stored in the CHP file.</td>
+			</tr>
+		</table>
+		<P>The data section is further broken down into data groups. Only one 
+		data group will exist in the file. Each sequence item will be stored in 
+		a separate sequence item within the one data group. The data group is define as:</P>
+	</blockquote>
+	<P><span class="header3">Data Group</span></P>
+	<blockquote>
+		<P><b>Name</b></P>
+		<P>The name of the data group will be &quot;Tiling Results&quot;.</P>
+		<P><b>Data Set</b></P>
+		<P>Each data group will contain one data set per sequence item.</P>
+	</blockquote>
+	<P><span class="header3">Data Set</span></P>
+	<blockquote>
+		<P><b>Name</b></P>
+		<P>The data set name will be the 0 based index of the sequence item in 
+		the group.</P>
+		<P><b>Parameters</b></P>
+		<table class="content" border=1 id="table1">
+			<tr>
+				<td><b>Parameter Name</b></td>
+				<td><b>Definition</b></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td>The sequence name.</td>
+			</tr>
+			<tr>
+				<td>GroupName</td>
+				<td>The name of the group which the sequence is a member (for 
+			example, often specifies organism)</td>
+			</tr>
+			<td>Version</td>
+			<td>The sequence version.</td>
+			</tr>
+			<tr>
+			<td>probeset_type</td>
+			<td>Indicates the type of the probe set. This is a string with the 
+			following possible values:<p>&quot;tiling&quot; - indicates a probe set used 
+			to interrogate a sequence.</p>
+			<p>The origin of this value comes from the BPMAP file used in the 
+			analysis. This value will only appear in the CHP file if the 
+			associated BPMAP file contained the parameter. Other values may 
+			exist within the BPMAP file, but the current implementation of the 
+			Tiling Analysis Software only analyzes sequences where the 
+			probeset_type is set to &quot;tiling&quot;.</td>
+			</tr>
+			</table>
+		<p>Additional parameters (taken from the BPMAP file) may be stored in 
+		the parameter section. CHP files generated from the Tiling Analysis Software will 
+		extract the parameters from the BPMAP file and copy them to the CHP 
+		file.</p>
+		<P><b>Column Definitions</b></P>
+		<P>There will only be two columns of data in each data set. The first 
+		column defines the genomic position and is stored as an integer value. 
+		The second column is either the signal or p-value (as defined in the 
+		generic data header parameters) and is stored as a floating point value.</P>
+		<table class="content" border=1 id="table1">
+			<tr>
+				<td><b>Column Type</b></td>
+				<td><b>Column Name</b></td>
+			</tr>
+			<tr>
+				<td>Int</td>
+				<td>Genomic Position</td>
+			</tr>
+			<tr>
+				<td>Float</td>
+				<td>p-value</td>
+			</tr>
+		</table>
+		<P><b>Data Matrix</b></P>
+		<P>The data matrix contains only two columns, as described above. Each 
+		row in the matrix will correspond to a single genomic position in the 
+		sequence item.</P>
+		<tdFLOAT - The intensity value. The row order is the same as defined in the GCOS CEL file.</td>
+	</blockquote>
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>

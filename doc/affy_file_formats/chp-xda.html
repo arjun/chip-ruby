@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Affymetrix XDA CHP File Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META 
+content="Affymetrix, GeneChip, GeneChip Array, Netaffx, NetAffx Analysis Center, Affymetrics, Affimetrix, Affimetrics, " 
+name=keywords>
+<META 
+content="Affymetrix is dedicated to developing state-of-the-art technology for acquiring, analyzing, and managing complex genetic information for use in biomedical research. Affymetrix sells GeneChip® brand arrays." 
+name=description>
+<SCRIPT language=JavaScript>
+</SCRIPT>
+
+<SCRIPT language=JavaScript src="files_files/main.js" 
+type=text/javascript></SCRIPT>
+<LINK href="files_files/style.css" type=text/css rel=stylesheet><LINK 
+href="/favicon.ico" rel=icon>
+<META content="Microsoft FrontPage 6.0" name=GENERATOR>
+<style>
+<!--
+table.MsoTableClassic4
+	{border-top:1.5pt solid black;
+	border-left:1.0pt solid black;
+	border-bottom:1.5pt solid black;
+	border-right:1.0pt solid black;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	}
+-->
+</style>
+</HEAD>
+<BODY onresize=fixIt() vLink=#003366 aLink=#003366 link=#003366 bgColor=#ffffff 
+leftMargin=0 topMargin=0 onunload=window.focus() marginheight="0" 
+marginwidth="0">
+<!-- Top links and Search plus noindex tags for atomz--> <NOINDEX> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=center align=left>&nbsp;</TD></TR> </TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=0 border=0 width="601"> 
+<TBODY> <TR> <TD vAlign=top align=left><IMG height=54 alt=Affymetrix src="files_files/affymetrix_logo.gif" width=128 border=0></TD><TD></TD><TD vAlign=center align=left class=pageheader><p>AFFYMETRIX 
+DEVELOPER NETWORK</p></TD></TR> </TBODY> </TABLE></NOINDEX><TABLE CELLSPACING=0 CELLPADDING=0 WIDTH=772 BORDER=0> 
+<TBODY> <TR> <TD VALIGN=top ALIGN=left WIDTH=772 BGCOLOR=#336699 HEIGHT="2"><IMG height=3 alt="" 
+			src="files_files/spacer.gif" width=1 border=0></TD></TR> 
+</TBODY> </TABLE><TABLE cellSpacing=0 cellPadding=5 width=409 
+      background=files_files/network_background.gif border=0> <TBODY> <TR> <TD vAlign=top align=left> 
+<TABLE cellSpacing=0 cellPadding=0 
+            background=files_files/spacer.gif border=0> <TBODY> <TR><TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD vAlign=top align=left width="100%"><IMG height=41 alt="" 
+                  src="files_files/spacer.gif" width=1 border=0></TD></TR> <TR> 
+<TD vAlign=top align=left width=11" ><IMG HEIGHT=1 ALT="" 
+                        SRC="files_files/spacer.gif" WIDTH=11 BORDER=0></TD><TD class=intro vAlign=top align=left> 
+<P><span class="header2">Affymetrix® XDA CHP Data File Format</span></P></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><br><TABLE cellSpacing=0 cellPadding=5 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> <TABLE cellSpacing=0 cellPadding=0 border=0> 
+<TBODY> <TR> <TD vAlign=top align=left> 
+  <TABLE cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>  
+
+<TR>
+	<TD vAlign=top align=right style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=11 alt="" src="files_files/bullet2.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">&nbsp;</TD>
+	<TD class=header3 vAlign=center align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none"><a name="CHP_FILE"></a>CHP FILE</TD>
+			<td>&nbsp;</td>
+</TR>
+
+<TR>
+	<TD vAlign=top align=left colSpan=4 style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" >
+			<IMG height=10 alt="" src="files_files/spacer.gif" width=1 border=0></TD>
+</TR>
+
+
+
+
+<TR>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="11">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=11 border=0></TD>
+	<TD vAlign=top align=left style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" width="8">
+		<IMG height=1 alt="" src="files_files/spacer.gif" width=5 border=0></P><P>&nbsp;</P></TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+		&nbsp;</TD>
+	<TD class=content vAlign=top align=left  style="BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none">
+		<span class="header4">Description</span><BR>
+		The CHP file of the format described in this document was used to store 
+		expression, resequencing and genotyping results from algorithms 
+		implemented in the GCOS 1.2, 1.3 and 1.4 and BRLMM Analysis Tool 
+		software applications.<p><span class="header4">Format</span><BR> 
+    The format of this CHP file is an binary file created for faster access and 
+    smaller file size. The values in the file are stored in little-endian 
+    format.<p>The file contents are define by:<p>
+    
+    
+ 
+<TABLE BORDER="1" CELLPADDING="0" CELLSPACING="0" span CLASS=content HEIGHT="1"> 
+<TR>
+	<TD WIDTH="110" HEIGHT="12"><B>Item</B></TD>
+	<TD width="70%" HEIGHT="12"><B>Description</B></TD>
+	<TD WIDTH="214" HEIGHT="12"><B>Type</B></TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">1</TD>
+	<TD width="70%" HEIGHT="14">Magic number. Always set to 65.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">2</TD>
+	<TD width="70%" HEIGHT="14">Version number.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">3</TD>
+	<TD width="70%" HEIGHT="14">The 
+number of columns of cells on the array.</TD>
+	<TD WIDTH="214" HEIGHT="14">unsigned short</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">4</TD>
+	<TD width="70%" HEIGHT="14">The 
+number of rows of cells on the array.</TD>
+	<TD WIDTH="214" HEIGHT="14">unsigned short</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">5</TD>
+	<TD width="70%" HEIGHT="14">The 
+number of units in the array not including QC units. The term unit is an internal 
+term which means probe set.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<tr>
+	<TD WIDTH="110" HEIGHT="14">6</TD>
+	<TD width="70%" HEIGHT="14">The number of QC units.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</tr>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">7</TD>
+	<TD width="70%" HEIGHT="14">Results type. Values are:<p>0 
+    - Expression<br>
+    1 - Genotyping<br>
+    2 - Resequencing<br>
+    3 - Universal (tag arrays)<br></TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">8</TD>
+	<TD width="70%" HEIGHT="14">Prog ID string length.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">9</TD>
+	<TD width="70%" HEIGHT="14">Prog ID of COM component that created the file.</TD>
+	<TD WIDTH="214" HEIGHT="14">char [length defined above]</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">10</TD>
+	<TD width="70%" HEIGHT="14">CEL file length.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">11</TD>
+	<TD width="70%" HEIGHT="14">CEL file used to create the CHP file.</TD>
+	<TD WIDTH="214" HEIGHT="14">char [length defined above]</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">12</TD>
+	<TD width="70%" HEIGHT="14">Probe array type string length.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">13</TD>
+	<TD width="70%" HEIGHT="14">Probe array type.</TD>
+	<TD WIDTH="214" HEIGHT="14">char [length defined above]</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">14</TD>
+	<TD width="70%" HEIGHT="14">Algorithm string length.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">15</TD>
+	<TD width="70%" HEIGHT="14">Algorithm name.</TD>
+	<TD WIDTH="214" HEIGHT="14">char [length defined above]</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">16</TD>
+	<TD width="70%" HEIGHT="14">Algorithm version string length.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">17</TD>
+	<TD width="70%" HEIGHT="14">Algorithm version.</TD>
+	<TD WIDTH="214" HEIGHT="14">char [length defined above]</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">18</TD>
+	<TD width="70%" HEIGHT="14">Number of algorithm parameters.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">19</TD>
+	<TD width="70%" HEIGHT="14">Algorithm parameters. The following is defined 
+    for each parameter:<p>Parameter name length - integer<br>
+    Parameter name - char [length defined above]<br>
+    Parameter value length - integer<br>
+    Parameter value - char [length defined above]</TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">20</TD>
+	<TD width="70%" HEIGHT="14">Number of summary statistic parameters.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">21</TD>
+	<TD width="70%" HEIGHT="14">Summary statistics (such as &quot;RawQ&quot;). The following is defined 
+    for each statistic:<p>Statistic name length - integer<br>
+    Statistic name - char [length defined above]<br>
+    Statistic value length - integer<br>
+    Statistic value - char [length defined above]</TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</TR> 
+<tr>
+	<TD WIDTH="110" HEIGHT="14">22</TD>
+	<TD width="70%" HEIGHT="14">Total number of zones used for the background 
+	calculation.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</tr>
+<tr>
+	<TD WIDTH="110" HEIGHT="14">23</TD>
+	<TD width="70%" HEIGHT="14">The smooth factor used in the background 
+	calculation.</TD>
+	<TD WIDTH="214" HEIGHT="14">float</TD>
+</tr>
+<tr>
+	<TD WIDTH="110" HEIGHT="14">24</TD>
+	<TD width="70%" HEIGHT="14">Background zone information. This following 
+	items are repeated for each zone:<p>The features X coordinate - float<br>
+	The features Y coordinate - float<br>
+	The background value - float</TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</tr>
+<tr>
+	<TD WIDTH="110" HEIGHT="14">25</TD>
+	<TD width="70%" HEIGHT="14">Size, in bytes, of each results object stored in the file.</TD>
+	<TD WIDTH="214" HEIGHT="14">integer</TD>
+</tr>
+<tr>
+	<TD WIDTH="110" HEIGHT="14">26</TD>
+	<TD width="70%" HEIGHT="14">Resequencing results (only stored in file if the 
+    results type is set to resequencing (2)):<p>Called sequence length - integer<br>
+    Called sequence - char [length defined above]<br>
+    Base call scores - float [length defined above]<p>The remaining items are 
+	stored in version 2 and above files.<p>Force calls length - integer<br>Force calls array [length defined above] 
+	: The force calls are an 
+	array of:<blockquote>
+		<p>Index to the called sequence array (zero based) - integer<br>Force call at the index position - char<br>Reason for the force call - 
+	unsigned char</blockquote>
+	<p>Original calls length - integer<br>Original calls 
+	array [length defined above] : The original calls array is an array of base 
+	calls called by the algorithm that were replaced by user edited calls. The 
+	edited calls are stored in the called sequence array while the original call 
+	is stored here. The original calls are an array of:<blockquote>
+		<p>Index to the called 
+	sequence array (zero based) - integer<br>Call at the index position - char<br>
+	</blockquote>
+    </TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</tr>
+<tr>
+	<TD WIDTH="110" HEIGHT="14">27</TD>
+	<TD width="70%" HEIGHT="14">An indicator to the type of expression analysis 
+	(only stored in file if the results type is set to expression (0)). 
+	The possible values are:<p>0 - Absolute analysis using the empirical 
+	algorithm (MAS 4).<br>
+	1 - Comparison analysis using the empirical algorithm (MAS4).<br>
+	2 - Absolute analysis using the statistical (MAS5) or PLIER algorithms.<br>
+	3 - Comparison analysis using the statistical (MAS5) or PLIER algorithms.</TD>
+	<TD WIDTH="214" HEIGHT="14">unsigned char</TD>
+</tr>
+<TR>
+	<TD WIDTH="110" HEIGHT="14">28</TD>
+	<TD width="70%" HEIGHT="14">Expression results for each unit (only stored in 
+    file if the results type is set to expression (0)):<p>Non-empirical results:<p>
+    Detection - unsigned char<br>Detection p-value - float<br>Signal - float<br>
+    Number of pairs - unsigned short<br>Number of pairs used - unsigned short<br>
+    Change - unsigned char*<br>Change p-value - float*<br>Signal Log Ratio - float*<br>
+    Signal Log Ratio Low - float*<br>Signal Log Ratio High - float*<br>Common Pairs 
+    - unsigned short*<p>* only stored if comparison analysis was performed.</TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">29</TD>
+	<TD width="70%" HEIGHT="14">Genotyping results for each unit (only stored in 
+    file if the results type is set to genotyping (1)):<p>Call - unsigned char 
+    (see above for numeric values)<br>
+    Confidence - float<br>
+    RAS1 (for 10K arrays) or p-value AA call (for 100K arrays) - float<br>
+    RAS2 (for 10K arrays) or p-value AB call (for 100K arrays) - float<br>
+    p-value BB call (for 100K arrays) - float<br>
+    p-value No Call call (for 100K arrays) - float</TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</TR> 
+<TR>
+	<TD WIDTH="110" HEIGHT="14">30</TD>
+	<TD width="70%" HEIGHT="14">Tag array results for each unit (only stored in 
+    file if the results type is set to universal (3)):<p>Background value - float</TD>
+	<TD WIDTH="214" HEIGHT="14">see description</TD>
+</TR> 
+</TABLE>
+
+		<p>
+&nbsp;</p>
+</TD>
+			<td>&nbsp;</td>
+</TR>
+
+
+
+
+</table></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE></TD></TR></TBODY>
+</TABLE><p><BR> 
+</p>
+</BODY></HTML>
