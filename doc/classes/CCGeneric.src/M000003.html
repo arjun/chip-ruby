@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>new (CCGeneric)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 25</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">max_lines</span>)
+    <span class="ruby-ivar">@debug</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@verbose</span> = <span class="ruby-keyword kw">nil</span>
+    
+    <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">filename</span>
+    <span class="ruby-ivar">@max_lines</span> = <span class="ruby-identifier">max_lines</span>
+    <span class="ruby-ivar">@file_header</span> = {}
+    <span class="ruby-ivar">@generic_data_header</span> = {}   <span class="ruby-comment cmt"># fixme: can be more than one header</span>
+    <span class="ruby-ivar">@generic_data_header_parameters</span> = []
+    <span class="ruby-ivar">@data_group_header</span> = {}     <span class="ruby-comment cmt"># fixme: ditto</span>
+    <span class="ruby-ivar">@data_set_header</span> = {}       <span class="ruby-comment cmt"># fixme: ditto</span>
+    
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Filename\n--------\n#{filename}\n\n&quot;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

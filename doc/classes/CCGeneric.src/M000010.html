@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>read_data_group (CCGeneric)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 99</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_data_group</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@filename</span>, <span class="ruby-value str">'rb'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">seek</span>(<span class="ruby-ivar">@file_header</span>[<span class="ruby-value str">'pos_first_data_group'</span>])
+
+      <span class="ruby-comment cmt"># 31896803 = eof, therefore no next group</span>
+      <span class="ruby-ivar">@data_group_header</span> = {
+        <span class="ruby-value str">'pos_next_data_group'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">read_int</span>(<span class="ruby-identifier">f</span>),
+        <span class="ruby-value str">'pos_first_data_set'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">read_int</span>(<span class="ruby-identifier">f</span>),
+        <span class="ruby-value str">'n_data_sets'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">read_int</span>(<span class="ruby-identifier">f</span>),
+        <span class="ruby-value str">'data_set_name'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">read_string</span>(<span class="ruby-identifier">f</span>, <span class="ruby-identifier">:wide</span>)
+      }
+
+      <span class="ruby-identifier">pretty_print_hash</span>(<span class="ruby-ivar">@data_group_header</span>, <span class="ruby-value str">'Data Group Header'</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
