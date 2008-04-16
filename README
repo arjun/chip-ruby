@@ -1,13 +1,13 @@
 == chip-ruby
  
-chip-ruby is a library for working with DNA microarray data from Affymetrix
+chip-ruby is a library for working with DNA microarray data
 
-It contains libraries for parsing Affymetrix CHP files and sample data.
+It contains libraries for parsing Affymetrix CHP files in the new binary format
+and sample data.
 
 == Future Work
 
 * Parse Affymetrix CEL and other files
-* Parse other files
 * Tests
 * gem install
 
@@ -17,4 +17,6 @@ It contains libraries for parsing Affymetrix CHP files and sample data.
  
 == Installation
 
-git clone git://github.com/arjun/chip-ruby.git
+* get git if you don't have it
+* git clone git://github.com/arjun/chip-ruby.git
+* ruby bin/parse_chp.rb
