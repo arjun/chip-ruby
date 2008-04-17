@@ -4,16 +4,14 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-  <title>read_string (CCGeneric)</title>
+  <title>read_int (CCGeneric)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 48</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_string</span>(<span class="ruby-identifier">f</span>, <span class="ruby-identifier">wide</span>=<span class="ruby-keyword kw">nil</span>)
-    <span class="ruby-identifier">n</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">4</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'N'</span>)[<span class="ruby-value">0</span>]
-    <span class="ruby-identifier">puts</span> <span class="ruby-value str">'debug: read_string: n = '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@debug</span>
-    <span class="ruby-identifier">wide</span> <span class="ruby-value">? </span><span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">n</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">n</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'a'</span><span class="ruby-operator">+</span><span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">to_s</span>
+  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 45</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_int</span>(<span class="ruby-identifier">f</span>)
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">4</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'N'</span>)[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

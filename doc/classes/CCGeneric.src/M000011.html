@@ -4,47 +4,16 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-  <title>read_data_set (CCGeneric)</title>
+  <title>pretty_print_header (CCGeneric)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 115</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_data_set</span>
-    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@filename</span>, <span class="ruby-value str">'rb'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">seek</span>(<span class="ruby-ivar">@data_group_header</span>[<span class="ruby-value str">'pos_first_data_set'</span>])
-
-      <span class="ruby-ivar">@data_set_header</span> = {
-        <span class="ruby-value str">'pos_first_data_element'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">read_int</span>(<span class="ruby-identifier">f</span>),
-        <span class="ruby-value str">'pos_next_data_set'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">read_int</span>(<span class="ruby-identifier">f</span>),
-        <span class="ruby-value str">'data_set_name'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">read_string</span>(<span class="ruby-identifier">f</span>, <span class="ruby-identifier">:wide</span>)
-      }
-
-      <span class="ruby-identifier">pretty_print_hash</span>(<span class="ruby-ivar">@data_set_header</span>, <span class="ruby-value str">'Data Set Header'</span>)
-
-      <span class="ruby-comment cmt"># fixme: more here</span>
-      <span class="ruby-comment cmt"># skip to data element</span>
-      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">seek</span>(<span class="ruby-ivar">@data_set_header</span>[<span class="ruby-value str">'pos_first_data_element'</span>])
-
-      <span class="ruby-comment cmt"># probesetname (string, 21?), call(ubyte,1) UByte (6 = AA, 7 = BB, 8 = AB, no call otherwise),</span>
-      <span class="ruby-comment cmt"># confidence(float, 4), signal a(float, 4), signal b(float,4), forced call(ubyte, 1) </span>
-      <span class="ruby-comment cmt"># n_rows? : 909,622</span>
-      <span class="ruby-identifier">i</span> = <span class="ruby-value">1</span>
-      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@max_lines</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
-        <span class="ruby-identifier">n</span> = <span class="ruby-identifier">read_int</span>(<span class="ruby-identifier">f</span>)
-        <span class="ruby-identifier">row</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">n</span><span class="ruby-operator">+</span><span class="ruby-value">14</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'a'</span><span class="ruby-operator">+</span><span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">'CgggC'</span>)
-        <span class="ruby-identifier">call</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>]
-                <span class="ruby-keyword kw">when</span> <span class="ruby-value">6</span> <span class="ruby-keyword kw">then</span> <span class="ruby-value str">'AA'</span>
-                <span class="ruby-keyword kw">when</span> <span class="ruby-value">7</span> <span class="ruby-keyword kw">then</span> <span class="ruby-value str">'BB'</span>
-                <span class="ruby-keyword kw">when</span> <span class="ruby-value">8</span> <span class="ruby-keyword kw">then</span> <span class="ruby-value str">'AB'</span>
-                <span class="ruby-keyword kw">else</span>        <span class="ruby-value str">'No call'</span>
-               <span class="ruby-keyword kw">end</span>
-  
-        <span class="ruby-identifier">print</span> <span class="ruby-identifier">i</span>, <span class="ruby-value str">' '</span>, <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>], <span class="ruby-value str">' '</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">call</span>
-        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-      <span class="ruby-keyword kw">end</span>
-    <span class="ruby-keyword kw">end</span>
+  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 71</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pretty_print_header</span>(<span class="ruby-identifier">header</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">header</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\n&quot;</span>
+    <span class="ruby-identifier">header</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">times</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;-&quot;</span> }
+    <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\n&quot;</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

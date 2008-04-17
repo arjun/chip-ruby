@@ -87,15 +87,6 @@
 
 
 
-    <div id="description">
-      <p>
-The Command Console generic data file format is a file format developed by
-Affymetrix for storing a variety of Affymetrix data and results including
-scanner acquisition data and intensity and probe array analysis results.
-</p>
-
-    </div>
-
 
 
 
@@ -108,23 +99,33 @@ scanner acquisition data and intensity and probe array analysis results.
 
       <div class="name-list">
 
-        <a href="classes/CCGeneric.html#M000003">new</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000005">new</a>&nbsp;&nbsp;
 
-        <a href="classes/CCGeneric.html#M000008">pretty_print_hash</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000013">pretty_print_columns</a>&nbsp;&nbsp;
 
-        <a href="classes/CCGeneric.html#M000005">read_char</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000014">pretty_print_hash</a>&nbsp;&nbsp;
 
-        <a href="classes/CCGeneric.html#M000010">read_data_group</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000011">pretty_print_header</a>&nbsp;&nbsp;
 
-        <a href="classes/CCGeneric.html#M000011">read_data_set</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000012">pretty_print_parameters</a>&nbsp;&nbsp;
 
-        <a href="classes/CCGeneric.html#M000009">read_header</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000007">read_char</a>&nbsp;&nbsp;
 
-        <a href="classes/CCGeneric.html#M000004">read_int</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000010">read_column</a>&nbsp;&nbsp;
 
-        <a href="classes/CCGeneric.html#M000007">read_parameter</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000018">read_data_groups</a>&nbsp;&nbsp;
 
-        <a href="classes/CCGeneric.html#M000006">read_string</a>&nbsp;&nbsp;
+        <a href="classes/CCGeneric.html#M000015">read_file_header</a>&nbsp;&nbsp;
+
+        <a href="classes/CCGeneric.html#M000016">read_generic_data_headers</a>&nbsp;&nbsp;
+
+        <a href="classes/CCGeneric.html#M000017">read_header</a>&nbsp;&nbsp;
+
+        <a href="classes/CCGeneric.html#M000006">read_int</a>&nbsp;&nbsp;
+
+        <a href="classes/CCGeneric.html#M000009">read_parameter</a>&nbsp;&nbsp;
+
+        <a href="classes/CCGeneric.html#M000008">read_string</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -158,18 +159,18 @@ scanner acquisition data and intensity and probe array analysis results.
       <h3 class="section-bar">Public Class methods</h3>
 
 
-      <div id="method-M000003" class="method-detail">
-        <a name="M000003"></a>
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
 
         <div class="method-heading">
 
-          <a href="CCGeneric.src/M000003.html" target="Code" class="method-signature"
-            onclick="popupCode('CCGeneric.src/M000003.html');return false;">
+          <a href="CCGeneric.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000005.html');return false;">
 
 
 
 
-          <span class="method-name">new</span><span class="method-args">(filename, max_lines)</span>
+          <span class="method-name">new</span><span class="method-args">(filename, *rest)</span>
 
 
           </a>
@@ -189,13 +190,39 @@ scanner acquisition data and intensity and probe array analysis results.
       <h3 class="section-bar">Public Instance methods</h3>
 
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
 
         <div class="method-heading">
 
-          <a href="CCGeneric.src/M000008.html" target="Code" class="method-signature"
-            onclick="popupCode('CCGeneric.src/M000008.html');return false;">
+          <a href="CCGeneric.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000013.html');return false;">
+
+
+
+
+          <span class="method-name">pretty_print_columns</span><span class="method-args">(columns, header)</span>
+
+
+          </a>
+
+
+        </div>
+
+        <div class="method-description">
+
+
+        </div>
+      </div>
+
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+
+          <a href="CCGeneric.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000014.html');return false;">
 
 
 
@@ -215,13 +242,69 @@ scanner acquisition data and intensity and probe array analysis results.
       </div>
 
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
 
         <div class="method-heading">
 
-          <a href="CCGeneric.src/M000005.html" target="Code" class="method-signature"
-            onclick="popupCode('CCGeneric.src/M000005.html');return false;">
+          <a href="CCGeneric.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000011.html');return false;">
+
+
+
+
+          <span class="method-name">pretty_print_header</span><span class="method-args">(header)</span>
+
+
+          </a>
+
+
+        </div>
+
+        <div class="method-description">
+
+          <p>
+methods for printing
+</p>
+
+
+        </div>
+      </div>
+
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+
+          <a href="CCGeneric.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000012.html');return false;">
+
+
+
+
+          <span class="method-name">pretty_print_parameters</span><span class="method-args">(h, header)</span>
+
+
+          </a>
+
+
+        </div>
+
+        <div class="method-description">
+
+
+        </div>
+      </div>
+
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+
+          <a href="CCGeneric.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000007.html');return false;">
 
 
 
@@ -252,7 +335,7 @@ scanner acquisition data and intensity and probe array analysis results.
 
 
 
-          <span class="method-name">read_data_group</span><span class="method-args">()</span>
+          <span class="method-name">read_column</span><span class="method-args">(f)</span>
 
 
           </a>
@@ -267,18 +350,78 @@ scanner acquisition data and intensity and probe array analysis results.
       </div>
 
 
-      <div id="method-M000011" class="method-detail">
-        <a name="M000011"></a>
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
 
         <div class="method-heading">
 
-          <a href="CCGeneric.src/M000011.html" target="Code" class="method-signature"
-            onclick="popupCode('CCGeneric.src/M000011.html');return false;">
+          <a href="CCGeneric.src/M000018.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000018.html');return false;">
 
 
 
 
-          <span class="method-name">read_data_set</span><span class="method-args">()</span>
+          <span class="method-name">read_data_groups</span><span class="method-args">()</span>
+
+
+          </a>
+
+
+        </div>
+
+        <div class="method-description">
+
+          <p>
+fixme: buggy with multiple?
+</p>
+
+
+        </div>
+      </div>
+
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+
+          <a href="CCGeneric.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000015.html');return false;">
+
+
+
+
+          <span class="method-name">read_file_header</span><span class="method-args">(f)</span>
+
+
+          </a>
+
+
+        </div>
+
+        <div class="method-description">
+
+          <p>
+methods for reading file structure
+</p>
+
+
+        </div>
+      </div>
+
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+
+          <a href="CCGeneric.src/M000016.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000016.html');return false;">
+
+
+
+
+          <span class="method-name">read_generic_data_headers</span><span class="method-args">(f)</span>
 
 
           </a>
@@ -293,70 +436,18 @@ scanner acquisition data and intensity and probe array analysis results.
       </div>
 
 
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
 
         <div class="method-heading">
 
-          <a href="CCGeneric.src/M000009.html" target="Code" class="method-signature"
-            onclick="popupCode('CCGeneric.src/M000009.html');return false;">
+          <a href="CCGeneric.src/M000017.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000017.html');return false;">
 
 
 
 
           <span class="method-name">read_header</span><span class="method-args">()</span>
-
-
-          </a>
-
-
-        </div>
-
-        <div class="method-description">
-
-
-        </div>
-      </div>
-
-
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
-
-        <div class="method-heading">
-
-          <a href="CCGeneric.src/M000004.html" target="Code" class="method-signature"
-            onclick="popupCode('CCGeneric.src/M000004.html');return false;">
-
-
-
-
-          <span class="method-name">read_int</span><span class="method-args">(f)</span>
-
-
-          </a>
-
-
-        </div>
-
-        <div class="method-description">
-
-
-        </div>
-      </div>
-
-
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
-
-        <div class="method-heading">
-
-          <a href="CCGeneric.src/M000007.html" target="Code" class="method-signature"
-            onclick="popupCode('CCGeneric.src/M000007.html');return false;">
-
-
-
-
-          <span class="method-name">read_parameter</span><span class="method-args">(f)</span>
 
 
           </a>
@@ -378,6 +469,62 @@ scanner acquisition data and intensity and probe array analysis results.
 
           <a href="CCGeneric.src/M000006.html" target="Code" class="method-signature"
             onclick="popupCode('CCGeneric.src/M000006.html');return false;">
+
+
+
+
+          <span class="method-name">read_int</span><span class="method-args">(f)</span>
+
+
+          </a>
+
+
+        </div>
+
+        <div class="method-description">
+
+          <p>
+methods for reading raw bytes
+</p>
+
+
+        </div>
+      </div>
+
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+
+          <a href="CCGeneric.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000009.html');return false;">
+
+
+
+
+          <span class="method-name">read_parameter</span><span class="method-args">(f)</span>
+
+
+          </a>
+
+
+        </div>
+
+        <div class="method-description">
+
+
+        </div>
+      </div>
+
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+
+          <a href="CCGeneric.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('CCGeneric.src/M000008.html');return false;">
 
 
 
