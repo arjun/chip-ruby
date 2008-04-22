@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 53</span>
+  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 61</span>
   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_string</span>(<span class="ruby-identifier">f</span>, <span class="ruby-identifier">wide</span>=<span class="ruby-keyword kw">nil</span>)
     <span class="ruby-identifier">n</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">4</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'N'</span>)[<span class="ruby-value">0</span>]
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\ndebug: read_string: n = #{n.to_s}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@debug</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\ndebug: read_string: n = #{n.to_s}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@verbosity</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:debug</span>
     <span class="ruby-identifier">wide</span> <span class="ruby-value">? </span><span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">n</span><span class="ruby-operator">*</span><span class="ruby-value">2</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">n</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'a'</span><span class="ruby-operator">+</span><span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">to_s</span>
   <span class="ruby-keyword kw">end</span></pre>
 </body>

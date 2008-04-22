@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>read_header (CCGeneric)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 151</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_header</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@filename</span>, <span class="ruby-value str">'rb'</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">read_file_header</span>(<span class="ruby-identifier">f</span>)
+      <span class="ruby-identifier">pretty_print_hash</span>(<span class="ruby-ivar">@file_header</span>, <span class="ruby-value str">&quot;File Header&quot;</span>)
+      
+      <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Hint: set 'verbosity' to see all parameters and parent file headers\n\n&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@verbosity</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:normal</span>
+            
+      <span class="ruby-identifier">read_generic_data_headers</span>(<span class="ruby-identifier">f</span>)
+      <span class="ruby-identifier">pretty_print_hash</span>(<span class="ruby-ivar">@generic_data_headers</span>[<span class="ruby-value">0</span>], <span class="ruby-value str">&quot;Generic Data Header (w/o Parent File Headers)&quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 187</span>
+  <pre><span class="ruby-comment cmt"># File lib/affymetrix.rb, line 200</span>
   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_data_row</span>(<span class="ruby-identifier">f</span>)
     <span class="ruby-identifier">n</span> = <span class="ruby-identifier">read_int</span>(<span class="ruby-identifier">f</span>)
     <span class="ruby-identifier">row</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">n</span><span class="ruby-operator">+</span><span class="ruby-value">14</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'a'</span><span class="ruby-operator">+</span><span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">'CgggC'</span>)

@@ -21,26 +21,32 @@
 require 'csv'
 
 class CCGeneric
-  VALUE_TYPES = ['byte', 'ubyte', 'short', 'ushort', 'int', 'uint', 'float', 'string', 'wstring']
 
-  def initialize(filename, *rest)
-    @debug = nil
-    @verbose = nil
-    @quiet = nil
+  attr_reader :filename
+  VALUE_TYPES = [:byte, :ubyte, :short, :ushort, :int, :uint, :float, :string, :wstring]
+
+  # Init the Command Console Generic date file (parent of all other files)
+  # params:
+  # - filename (string, required)
+  # - maxlines (int, defaults to 100)
+  # - verbosity (can be :normal, :verbose, :debug, :quiet)
+  def initialize(params)
     
-    @filename = filename
-    @filesize = File.size(filename)
-    @maxlines = rest[0]
+    @filename = params[:filename]
+    @filesize = File.size(@filename)
+    @maxlines = params[:maxlines]
+    @verbosity = params[:verbosity] || :normal
+
     @file_header = {}
     @generic_data_headers = []
     @generic_data_header_parameters = []
     @data_groups = []
     @data_sets = []
     
-    puts "Filename\n--------\n#{filename}\n\n"
+    puts "Filename\n--------\n#{@filename}\n\n" unless @verbosity == :quiet
   end
 
-  #
+  #--
   # methods for reading raw bytes
   #
   
@@ -54,7 +60,7 @@ class CCGeneric
 
   def read_string(f, wide=nil)
     n = f.read(4).unpack('N')[0]
-    puts "\ndebug: read_string: n = #{n.to_s}" if @debug
+    puts "\ndebug: read_string: n = #{n.to_s}" if @verbosity == :debug
     wide ? f.read(n*2).to_s : f.read(n).unpack('a'+n.to_s).to_s
   end
   
@@ -66,17 +72,19 @@ class CCGeneric
     [read_string(f, :wide), read_char(f), read_int(f)]
   end
 
-  #
+  #--
   # methods for printing
   #
 
   def pretty_print_header(header)
+    return if @verbosity == :quiet
     puts header + "\n"
     header.length.times { |l| print "-" }
     puts "\n"
   end
   
   def pretty_print_parameters(h, header)
+    return if @verbosity == :quiet or @verbosity == :normal
     pretty_print_header(header)
     h['parameters'].each do |p|
       puts "#{p[0]} = #{p[1]} (#{p[2]})"
@@ -85,6 +93,7 @@ class CCGeneric
   end
 
   def pretty_print_columns(columns, header)
+    return if @verbosity == :quiet
     pretty_print_header(header)
     columns.each do |c|
       puts "#{c[0]}, type: #{VALUE_TYPES[c[1].to_i]}, size: #{c[2]}"
@@ -93,12 +102,13 @@ class CCGeneric
   end
 
   def pretty_print_hash(h, header)
+    return if @verbosity == :quiet
     pretty_print_header(header)
     h.each_pair { |key, value| puts "#{key} = #{value}" }
     puts "\n"
   end
 
-  #
+  #--
   # methods for reading file structure
   # 
 
@@ -127,7 +137,7 @@ class CCGeneric
       h['parameters'] << read_parameter(f)
     end
 
-    pretty_print_parameters(h, 'Parameters') if @verbose
+    pretty_print_parameters(h, 'Parameters') 
 
     h['n_parent_file_headers'] = read_int(f)
 
@@ -143,14 +153,14 @@ class CCGeneric
       read_file_header(f)
       pretty_print_hash(@file_header, "File Header")
       
-      puts "Hint: set 'verbose' to see all parameters and parent file headers\n\n" unless @verbose
-      
+      puts "Hint: set 'verbosity' to see all parameters and parent file headers\n\n" if @verbosity == :normal
+            
       read_generic_data_headers(f)
       pretty_print_hash(@generic_data_headers[0], "Generic Data Header (w/o Parent File Headers)")
     end
   end
   
-  # fixme: buggy with multiple?
+  #-- fixme: buggy with multiple?
   def read_data_groups
     File.open(@filename, 'rb') do |f|
       f.seek(@file_header['pos_first_data_group'])
@@ -162,7 +172,8 @@ class CCGeneric
         'data_group_name' => read_string(f, :wide)
       }
 
-      puts "XXXXXXXXXX #{h['pos_next_data_group']} #{@filesize}\n"
+      # fixme
+      puts "XXXXXXXXXX #{h['pos_next_data_group']} #{@filesize}\n" if @verbosity == :debug
       
       if h['pos_next_data_group'] < @filesize then
         f.seek(h['pos_next_data_group'])
@@ -220,7 +231,7 @@ class CHP < CCGeneric
           h['parameters'] << read_parameter(f)
         end
 
-        pretty_print_parameters(h, 'Parameters') if @verbose
+        pretty_print_parameters(h, 'Parameters')
 
         h['n_columns'] = read_int(f)
 
@@ -237,7 +248,7 @@ class CHP < CCGeneric
         i = 1
         while f.tell < @filesize
           row, call = read_data_row(f)
-          puts "#{i} #{row[0]} #{call}"
+          puts "#{i} #{row[0]} #{call}" unless @verbosity == :quiet
           if i == @maxlines then break
           else i += 1
           end
