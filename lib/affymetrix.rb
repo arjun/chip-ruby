@@ -21,7 +21,6 @@
 require 'csv'
 
 class CCGeneric
-
   attr_reader :filename
   VALUE_TYPES = [:byte, :ubyte, :short, :ushort, :int, :uint, :float, :string, :wstring]
 
@@ -49,7 +48,18 @@ class CCGeneric
   #--
   # methods for reading raw bytes
   #
-  
+  def read_ubyte(f)
+    f.read(1).unpack('C')
+  end
+
+  def read_float(f)
+    f.read(4).unpack('g')
+  end
+
+  def read_ushort(f)
+    f.read(2).unpack('v')
+  end
+
   def read_int(f)
     f.read(4).unpack('N')[0].to_i
   end
@@ -60,7 +70,6 @@ class CCGeneric
 
   def read_string(f, wide=nil)
     n = f.read(4).unpack('N')[0]
-    puts "\ndebug: read_string: n = #{n.to_s}" if @verbosity == :debug
     wide ? f.read(n*2).to_s : f.read(n).unpack('a'+n.to_s).to_s
   end
   
@@ -77,16 +86,13 @@ class CCGeneric
   #
 
   def pretty_print_header(header)
-    return if @verbosity == :quiet
-    puts header + "\n"
-    header.length.times { |l| print "-" }
-    puts "\n"
+    puts header, "-" * header.length unless @verbosity == :quiet
   end
   
   def pretty_print_parameters(h, header)
     return if @verbosity == :quiet or @verbosity == :normal
     pretty_print_header(header)
-    h['parameters'].each do |p|
+    h[:parameters].each do |p|
       puts "#{p[0]} = #{p[1]} (#{p[2]})"
     end
     puts "\n"
@@ -96,7 +102,7 @@ class CCGeneric
     return if @verbosity == :quiet
     pretty_print_header(header)
     columns.each do |c|
-      puts "#{c[0]}, type: #{VALUE_TYPES[c[1].to_i]}, size: #{c[2]}"
+      puts "#{c[0]} (type: #{VALUE_TYPES[c[1].to_i]}, size: #{c[2]})"
     end
     puts "\n"
   end
@@ -114,34 +120,32 @@ class CCGeneric
 
   def read_file_header(f)
     @file_header = {  
-      'magic_number' => read_char(f), 
-      'version_number' => read_char(f),
-      'n_data_groups' => read_int(f),
-      'pos_first_data_group' => read_int(f)
+      :magic_number => read_char(f), 
+      :version_number => read_char(f),
+      :n_data_groups => read_int(f),
+      :pos_first_data_group => read_int(f)
     }
   end
   
   def read_generic_data_headers(f)
     h = {
-      'data_type_id' => read_string(f),
-      'unique_file_id' => read_string(f),
-      'created_at' => read_string(f),
-      'locale' => read_string(f, :wide), # not wstring in spec?
-      'n_parameters' => read_int(f),
-      'parameters' => [],
-      'n_parent_file_headers' => nil,
-      'parent_file_headers' => []
+      :data_type_id => read_string(f),
+      :unique_file_id => read_string(f),
+      :created_at => read_string(f),
+      :locale => read_string(f, :wide), # not wstring in spec?
+      :n_parameters => read_int(f),
+      :parameters => [],
+      :n_parent_file_headers => nil,
+      :parent_file_headers => []
     }
     
-    h['n_parameters'].to_i.times do
-      h['parameters'] << read_parameter(f)
+    h[:n_parameters].to_i.times do
+      h[:parameters] << read_parameter(f)
     end
 
-    pretty_print_parameters(h, 'Parameters') 
+    h[:n_parent_file_headers] = read_int(f)
 
-    h['n_parent_file_headers'] = read_int(f)
-
-    h['n_parent_file_headers'].times do |n|
+    h[:n_parent_file_headers].times do |n|
       read_generic_data_headers(f)
     end
 
@@ -157,32 +161,28 @@ class CCGeneric
             
       read_generic_data_headers(f)
       pretty_print_hash(@generic_data_headers[0], "Generic Data Header (w/o Parent File Headers)")
+      pretty_print_parameters(@generic_data_headers[0], 'Parameters')
     end
   end
   
-  #-- fixme: buggy with multiple?
-  def read_data_groups
+  def read_data_groups(pos = @file_header[:pos_first_data_group])
     File.open(@filename, 'rb') do |f|
-      f.seek(@file_header['pos_first_data_group'])
+      f.seek(pos)
 
-      h = { 
-        'pos_next_data_group' => read_int(f),
-        'pos_first_data_set' => read_int(f),
-        'n_data_sets' => read_int(f),
-        'data_group_name' => read_string(f, :wide)
+      h = {
+        :pos_next_data_group => read_int(f),
+        :pos_first_data_set => read_int(f),
+        :n_data_sets => read_int(f),
+        :data_group_name => read_string(f, :wide)
       }
 
-      # fixme
-      puts "XXXXXXXXXX #{h['pos_next_data_group']} #{@filesize}\n" if @verbosity == :debug
-      
-      if h['pos_next_data_group'] < @filesize then
-        f.seek(h['pos_next_data_group'])
-        read_data_groups
+      if h[:pos_next_data_group] < @filesize then
+        read_data_groups(h[:pos_next_data_group])
       end
       
       @data_groups << h
       
-      pretty_print_hash(h, 'Data Group Header')
+      pretty_print_hash(h, "Data Group Header (#{@data_groups.length})")
     end
   end
 end
@@ -197,6 +197,10 @@ class CHP < CCGeneric
     read_data_sets
   end
 
+  # this will be different for different things e.g. Genotyping Console vs. Expression Console (MAS5, etc)
+  # make this data-driven
+
+  # Genotyping Console
   def read_data_row(f)
     n = read_int(f)
     row = f.read(n+14).unpack('a'+n.to_s+'CgggC')
@@ -209,44 +213,84 @@ class CHP < CCGeneric
     return row, call
   end
 
+  # Expression Console (MAS5)
+
+  def read_background_zone_data_row(f)
+    h = {
+      :center_x => read_float(f),
+      :center_y => read_float(f),
+      :background => read_float(f),
+      :smooth_factor => read_float(f)
+    }
+
+    pretty_print_hash(h, "read_background_zone_data_row") if @verbosity == :debug
+    
+    return h
+  end
+
+  def read_expression_results_row(f)
+    h = {
+      :probe_set_name => read_string(f, :wide),
+      :detection => read_ubyte(f),
+      :detection_p_value  => read_float(f),
+      :signal => read_float(f),
+      :n_pairs => read_ushort(f),
+      :n_pairs_used => read_ushort(f)
+    }
+
+    pretty_print_hash(h, "read_expression_results_row") if @verbosity == :debug
+    
+    return h
+  end
+
   def read_data_sets
     File.open(@filename, 'rb') do |f|
       @data_groups.each do |data_group|
         
-        f.seek(data_group['pos_first_data_set'])
+        f.seek(data_group[:pos_first_data_set])
 
         h = {
-          'pos_first_data_element' => read_int(f),
-          'pos_next_data_set' => read_int(f),
-          'data_set_name' => read_string(f, :wide),
-          'n_parameters' => read_int(f),
-          'parameters' => [],
-          'n_columns' => 0,
-          'columns' => []
+          :pos_first_data_element => read_int(f),
+          :pos_next_data_set => read_int(f),
+          :data_set_name => read_string(f, :wide),
+          :n_parameters => read_int(f),
+          :parameters => [],
+          :n_columns => 0,
+          :columns => []
         }
 
-        pretty_print_hash(h, 'Data Set Header')
-
-        h['n_parameters'].to_i.times do
-          h['parameters'] << read_parameter(f)
+        h[:n_parameters].to_i.times do
+          h[:parameters] << read_parameter(f)
         end
 
-        pretty_print_parameters(h, 'Parameters')
+        h[:n_columns] = read_int(f)
 
-        h['n_columns'] = read_int(f)
-
-        h['n_columns'].to_i.times do
-          h['columns'] << read_column(f)
+        h[:n_columns].to_i.times do
+          h[:columns] << read_column(f)
         end
-        
-        pretty_print_columns(h['columns'], 'Columns')
         
         @data_sets << h
         
-        f.seek(h['pos_first_data_element'])
+        l = @data_sets.length
+
+        pretty_print_hash(h, "Data Set Header (#{l})")
+        pretty_print_parameters(h, "Parameters (#{l})")
+        pretty_print_columns(h[:columns], "Columns (#{l})")
+        
+        f.seek(h[:pos_first_data_element])
 
         i = 1
         while f.tell < @filesize
+          puts "f.tell is #{f.tell} / #{h['data_set_name']}" if @verbosity == :debug
+
+          # fixme -- needs to be data-driven based on file type genotyping or expression, etc.
+          # hack
+          # if h[:pos_first_data_element] == 716591
+          #   read_background_zone_data_row(f)
+          # else
+          #   read_expression_results_row(f)
+          # end
+
           row, call = read_data_row(f)
           puts "#{i} #{row[0]} #{call}" unless @verbosity == :quiet
           if i == @maxlines then break
@@ -264,7 +308,7 @@ class CHP < CCGeneric
       pretty_print_header("\nWriting to #{outfilename}")
       
       @data_sets.each do |data_set|
-        f.seek(data_set['pos_first_data_element'])
+        f.seek(data_set[:pos_first_data_element])
         
         i = 1
         outfile = File.open(outfilename, 'wb')
