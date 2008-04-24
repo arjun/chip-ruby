@@ -3,7 +3,7 @@
 chip-ruby is a library for working with DNA microarray data
 
 It contains libraries for parsing Affymetrix CHP files in the new binary format
-and sample data.
+and sample data. Can process Genotyping and Expression console files. Outputs to CSV and YAML formats.
 
 == Future Work
 
