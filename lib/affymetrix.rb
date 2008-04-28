@@ -78,9 +78,21 @@ class CCGeneric
 
   # Note: "wide" is UTF-16BE (for big/network-endian, no byte-order-mark)
   # e.g. char 'z' encoded to bytes as '00 7A' or printed (using "z".inspect) as "\000z"
+  #
+  # This method casts wide strings to normal strings
   def read_string(f, wide=nil)
     n = f.read(4).unpack("N")[0]
-    wide ? f.read(n*2).to_s : f.read(n).unpack("A"+n.to_s).to_s
+    
+    if wide then
+      s = f.read(n*2).to_s
+      s2 = ""
+      s.each_byte do |c|
+        s2 << c unless c == 0
+      end
+      return s2
+    else
+      f.read(n).unpack("A"+n.to_s).to_s
+    end
   end
   
   def read_parameter(f)
@@ -95,13 +107,13 @@ class CCGeneric
   # methods for printing
   #
 
-  def pretty_print_header(header)
+  def pretty_print_headline(header)
     puts header, "-" * header.length unless @verbosity == :quiet
   end
   
   def pretty_print_parameters(h, header)
     return if @verbosity == :quiet or @verbosity == :normal
-    pretty_print_header header
+    pretty_print_headline header
     h[:parameters].each do |p|
       puts "#{p[0]} = #{p[1]} (#{p[2]})"
     end
@@ -110,7 +122,7 @@ class CCGeneric
 
   def pretty_print_columns(columns, header)
     return if @verbosity == :quiet
-    pretty_print_header header
+    pretty_print_headline header
     columns.each do |c|
       puts "#{c[0]} (type: #{VALUE_TYPES[c[1].to_i]}, size: #{c[2]})"
     end
@@ -119,15 +131,15 @@ class CCGeneric
 
   def pretty_print_hash(h, header)
     return if @verbosity == :quiet
-    pretty_print_header header
+    pretty_print_headline header
     h.each_pair { |key, value| puts "#{key} = #{value}" }
     puts "\n"
   end
 
   #--
-  # methods for reading file structure
+  # methods for file headers
   # 
-
+  
   def read_file_header(f)
     @file_header = {  
       :magic_number => read_char(f), 
@@ -137,12 +149,13 @@ class CCGeneric
     }
   end
   
+  # Note: locale is a wide string, but not specified as such in spec
   def read_generic_data_headers(f)
     h = {
       :data_type_id => read_string(f),
       :unique_file_id => read_string(f),
       :created_at => read_string(f),
-      :locale => read_string(f, :wide), # not wstring in spec?
+      :locale => read_string(f, :wide),
       :n_parameters => read_int(f),
       :parameters => [],
       :n_parent_file_headers => nil,
@@ -165,13 +178,22 @@ class CCGeneric
   def read_header
     File.open(@filename, "rb") do |f|
       read_file_header f
+      read_generic_data_headers f
+    end
+  end
+
+  def print_header
+    File.open(@filename, "rb") do |f|
       pretty_print_hash @file_header, "File Header"
       puts "Hint: set 'verbosity' to see all parameters and parent file headers\n\n" if @verbosity == :normal
-      read_generic_data_headers f
       pretty_print_hash @generic_data_headers[0], "Generic Data Header (w/o Parent File Headers)"
       pretty_print_parameters @generic_data_headers[0], "Parameters"
     end
   end
+
+  #--
+  # methods for data
+  # 
   
   def read_data_groups(pos = @file_header[:pos_first_data_group])
     File.open @filename, "rb" do |f|
@@ -189,7 +211,11 @@ class CCGeneric
       end
       
       @data_groups << h
-      
+    end
+  end
+
+  def print_data_groups()
+    @data_groups.each do |h|
       pretty_print_hash h, "Data Group Header (#{@data_groups.length})"
     end
   end
@@ -207,7 +233,8 @@ class CCGeneric
           :n_parameters => read_int(f),
           :parameters => [],
           :n_columns => 0,
-          :columns => []
+          :columns => [],
+          :rows  => []
         }
 
         h[:n_parameters].to_i.times do
@@ -222,22 +249,15 @@ class CCGeneric
         
         @data_sets << h
         
-        l = @data_sets.length
-
-        pretty_print_hash(h, "Data Set Header (#{l})")
-        pretty_print_parameters(h, "Parameters (#{l})")
-        pretty_print_columns(h[:columns], "Columns (#{l})")
-        
         f.seek(h[:pos_first_data_element])
 
         i = 1
         while f.tell < @filesize
           puts "f.tell is #{f.tell} / #{h['data_set_name']}" if @verbosity == :debug
           
-          # call the child class reading and printing methods
-          row = read_data_row(f, h)
-          print_data_row(row, i) unless @verbosity == :quiet
-          
+          # call the child class reading method
+          h[:rows] << read_data_row(f, h)
+
           if i == @maxlines then break
           else i += 1
           end
@@ -246,49 +266,42 @@ class CCGeneric
     end
   end
 
-  # fixme: dump from object. don't read file here
-  def write_data_sets(h)
-    outfilename = h[:outfilename] || "out"
-    format = h[:format] || "out"
-    table = h[:table] || "tablename"
-    
-    File.open(@filename, "rb") do |f|
+  def print_data_sets
+    @data_sets.each_with_index do |h, i|
+      # pretty_print_hash(h, "Data Set Header (#{i})")
+      pretty_print_parameters(h, "Parameters (#{i})")
+      pretty_print_columns(h[:columns], "Columns (#{i})")
 
-      pretty_print_header "\nWriting to #{outfilename}"
-      
-      @data_sets.each do |data_set|
-        f.seek(data_set[:pos_first_data_element])
-        
-        i = 1
-        outfile = File.open(outfilename, "wb")
-        if format == "csv" then
-          CSV::Writer.generate outfile do |csv|
-            while f.tell < @filesize
-              row, call = read_data_row(f)
-              csv << [row[0].strip, call]
-            
-              if i == @maxlines then break
-              else i += 1
-              end
-            end
-          end
-        elsif format == "yaml" then
-          rows = []
-          while f.tell < @filesize
-            row, call = read_data_row f
-            rows << [row[0], call]
-            if i == @maxlines then break
-            else i += 1
-            end
-          end
-          outfile << YAML::dump(rows)
-        else
-          puts "Output format must be 'csv' or 'yaml'. Exiting..."
-        end
+      h[:rows].each_with_index do |row, i|
+        print_data_row(row, i) unless @verbosity == :quiet
       end
     end
   end
 
+  def write_data_sets(h)
+    if not defined? h[:filename]
+      raise "Filename required. Exiting."
+    end
+    
+    if not defined? h[:format]
+      puts "Warning: format set to csv"
+    end 
+    
+    filename = h[:filename]
+    format = h[:format] || "csv"
+    
+    pretty_print_headline "\nWriting to #{filename}"
+
+    outfile = File.open(filename, "wb")
+
+    CSV::Writer.generate outfile do |csv|
+      @data_sets.each do |e|
+        e[:rows].each do |e|
+          write_data_row(e, csv)
+        end
+      end
+    end
+  end
 end
 
 # - Subclasses
@@ -302,6 +315,8 @@ class GenotypingCHP < CCGeneric
     read_data_groups
     read_data_sets
   end
+
+  private
   
   # fixme: use contrast and strength for BRLMM algo
   # spec bug: "forced call" after confidence in spec, but after signal_b in file
@@ -332,6 +347,10 @@ class GenotypingCHP < CCGeneric
       pretty_print_hash(h, "Row #{i}")
     end
   end
+
+  def write_data_row(row, csv)
+    csv << [row[:probe_set_name], row[:call]]
+  end
   
 end
 
@@ -345,6 +364,8 @@ class ExpressionCHP < CCGeneric
     read_data_groups
     read_data_sets
   end
+
+  private
 
   # Expression Console (MAS5)
   def read_background_zone_data_row(f)
@@ -368,15 +389,6 @@ class ExpressionCHP < CCGeneric
   end
 
   def read_data_row(f, data_set_header)
-    
-    # fixme: hackish cast from UTF-16BE to String should be moved out of here
-    foo = ""
-    data_set_header[:data_set_name].each_byte do |c|
-      foo << c unless  c == 0
-    end
-
-    data_set_header[:data_set_name] = foo
-
     if data_set_header[:data_set_name] == "Background Zone Data"  then
       read_background_zone_data_row(f)
     elsif data_set_header[:data_set_name] == "Expression Results" then
@@ -390,9 +402,12 @@ class ExpressionCHP < CCGeneric
     pretty_print_hash(h, "Row #{i}")
   end
 
+  def write_data_row(row, csv)
+    raise "fixme"
+    csv << [row[:center_x], row[:center_y], row[:background], row[:smooth_factor]]
+    csv << [row[:probe_set_name], row[:detection], row[:detection_p_value], row[:signal]]
+  end
 end
-
-
 
 # The CEL file stores the results of the intensity calculations on the pixel
 # values of the DAT file. This includes an intensity value, standard deviation
