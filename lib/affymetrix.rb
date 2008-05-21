@@ -17,6 +17,15 @@
 # The Command Console generic data file format is a file format developed by
 # Affymetrix for storing a variety of Affymetrix data and results including
 # scanner acquisition data and intensity and probe array analysis results.
+#
+# Each subclass of CCGeneric must impliment three functions
+#
+# * read_data_row(f, data_set_header=nil) - f: file object to read, data_set_header (optional)
+# * print_data_row(h, i) - h: hash of row, i: index
+# * write_data_row(h, csv) - h: hash of row, csv: output file object
+#
+
+
 
 require "csv"
 require "yaml"
@@ -206,7 +215,7 @@ class CCGeneric
         :data_group_name => read_string(f, :wide)
       }
 
-      if h[:pos_next_data_group] < @filesize then
+      if h[:pos_next_data_group] < @filesize and h[:pos_next_data_group] != 0 then
         read_data_groups h[:pos_next_data_group]
       end
       
@@ -348,10 +357,9 @@ class GenotypingCHP < CCGeneric
     end
   end
 
-  def write_data_row(row, csv)
-    csv << [row[:probe_set_name], row[:call]]
+  def write_data_row(h, csv)
+    csv << [h[:probe_set_name], h[:call]]
   end
-  
 end
 
 # Expression Console files with probe set analysis results from the MAS5, PLIER, RMA and DABG algorithms
@@ -402,10 +410,10 @@ class ExpressionCHP < CCGeneric
     pretty_print_hash(h, "Row #{i}")
   end
 
-  def write_data_row(row, csv)
+  def write_data_row(h, csv)
     raise "fixme"
-    csv << [row[:center_x], row[:center_y], row[:background], row[:smooth_factor]]
-    csv << [row[:probe_set_name], row[:detection], row[:detection_p_value], row[:signal]]
+    csv << [h[:center_x], h[:center_y], h[:background], h[:smooth_factor]]
+    csv << [h[:probe_set_name], h[:detection], h[:detection_p_value], h[:signal]]
   end
 end
 
@@ -416,11 +424,43 @@ end
 # user defined flag indicating the feature should be excluded from future
 # analysis. The file stores the previously stated data for each feature on the
 # probe array
-# class CEL < CCGeneric
-#   def initialize(h)
-#     super(h)
-#     read_header
-#     read_data_groups
-#     read_data_sets
-#   end
-# end
+#
+#
+# FIXME!
+class CEL < CCGeneric
+  def initialize(args)
+    super(args)
+    read_header
+    read_data_groups
+    read_data_sets
+  end
+
+  private
+  
+  def read_data_row(f, data_set_header)
+    if data_set_header[:data_set_name] == "Intensity" then
+      # puts "here #{f.tell}"
+      h = { :intensity => read_float(f) }
+    elsif data_set_header[:data_set_name] == "StdDev" then
+      h = { :stddev => read_float(f) }
+    elsif data_set_header[:data_set_name] == "Pixel" then
+      h = { :pixel => read_ushort(f) }
+    elsif data_set_header[:data_set_name] == "Outlier" then
+      h = { :outlier => read_ushort(f) }
+    elsif data_set_header[:data_set_name] == "Mask" then
+      h = { :mask => read_ushort(f) }
+    else
+      raise "Bad :data_set_name #{data_set_header[:data_set_name]}"
+    end
+  end
+
+  
+  def print_data_row(h, i)
+    pretty_print_hash(h, "Row #{i}")
+  end
+
+  def write_data_row(h, csv)
+    # csv << [h[:probe_set_name], h[:call]]
+  end
+  
+end
