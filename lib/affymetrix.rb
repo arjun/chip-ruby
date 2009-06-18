@@ -25,8 +25,6 @@
 # * write_data_row(h, csv) - h: hash of row, csv: output file object
 #
 
-
-
 require "csv"
 require "yaml"
 
@@ -47,10 +45,10 @@ class CCGeneric
     @filesize = File.size(@filename)
     
     if not defined? params[:maxlines]
-      puts "Warning: maxlines set to 100"
+      puts "Info: maxlines set to 1M"
     end 
     
-    @maxlines = params[:maxlines] || 100
+    @maxlines = params[:maxlines] || 1000000
     @verbosity = params[:verbosity] || :normal
 
     @file_header = {}

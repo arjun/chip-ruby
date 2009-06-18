@@ -7,12 +7,6 @@ and sample data. Can process Genotyping and Expression console files. Outputs to
 
 chip-ruby is licensed under GPLv2, however any included code, data, documentation are property of their respective owners.
 
-== Future Work
-
-* Parse Affymetrix CEL and other files
-* Tests
-* gem install
-
 # Author::    Arjun Sanyal (mailto:arjun.sanyal@childrens.harvard.edu)
 # Copyright:: Children's Hospital Boston
 # License:: GPLv2
@@ -21,5 +15,13 @@ chip-ruby is licensed under GPLv2, however any included code, data, documentatio
 
 * get git if you don't have it
 * git clone git://github.com/arjun/chip-ruby.git
-* cd chip-ruby
-* bin/parse_chp.rb
+* cd chip-ruby/bin
+* ./parse_affy_chp.rb
+
+== Future Work
+
+* Use stringIO for more speed?
+* Parse Affymetrix CEL and other files
+* Tests
+* gem install
+
