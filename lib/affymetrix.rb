@@ -44,6 +44,9 @@ class CCGeneric
     @filename = params[:filename]
     @filesize = File.size(@filename)
     
+    # puts 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ' + @filesize.to_s
+    # exit
+
     if not defined? params[:maxlines]
       puts "Info: maxlines set to 1M"
     end
@@ -56,6 +59,7 @@ class CCGeneric
     @generic_data_header_parameters = []
     @data_groups = []
     @data_sets = []
+    @line = 0
 
     puts "\nFilename\n--------\n#{@filename}\n\n" unless @verbosity == :quiet
   end
@@ -96,9 +100,15 @@ class CCGeneric
       s.each_byte do |c|
         s2 << c unless c == 0
       end
+
+      # debug
+      # puts "in read_string wide " + s2
       return s2
     else
-      f.read(n).unpack("A"+n.to_s).to_s
+      s = f.read(n).unpack("A"+n.to_s).to_s
+      # puts @line.to_s + " in read_string " + s
+      # @line += 1
+      return s
     end
   end
   
@@ -259,8 +269,11 @@ class CCGeneric
         f.seek(h[:pos_first_data_element])
 
         i = 1
-        while f.tell < @filesize
-          puts "f.tell is #{f.tell} / #{h['data_set_name']}" if @verbosity == :debug
+
+        # FIXME! HACK WARNING! Getting filesize + 1 when calling script not from commandline!!
+        while f.tell < @filesize - 1
+          # debug
+          # puts "f.tell is #{f.tell}, filesize #{@filesize}, i #{i} #{h['data_set_name']}"
           
           # call the child class reading method
           h[:rows] << read_data_row(f, h)
