@@ -46,7 +46,7 @@ class CCGeneric
     
     if not defined? params[:maxlines]
       puts "Info: maxlines set to 1M"
-    end 
+    end
     
     @maxlines = params[:maxlines] || 1000000
     @verbosity = params[:verbosity] || :normal
@@ -304,10 +304,13 @@ class CCGeneric
     CSV::Writer.generate outfile do |csv|
       @data_sets.each do |e|
         e[:rows].each do |e|
+          # puts "#{e}"
           write_data_row(e, csv)
         end
       end
     end
+
+    outfile.close
   end
 end
 
@@ -321,6 +324,11 @@ class GenotypingCHP < CCGeneric
     read_header
     read_data_groups
     read_data_sets
+  end
+
+
+  def data_sets
+    @data_sets
   end
 
   private
@@ -356,6 +364,7 @@ class GenotypingCHP < CCGeneric
   end
 
   def write_data_row(h, csv)
+    # puts "#{h[:probe_set_name]} #{h[:call]}"
     csv << [h[:probe_set_name], h[:call]]
   end
 end
